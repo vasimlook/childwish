@@ -1,0 +1,45 @@
+CRITICAL - 2020-11-21 11:22:05 --> Cannot modify header information - headers already sent by (output started at C:\xampp745\htdocs\charity\app\Config\Events.php:33)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'Cannot modify h...', 'C:\\xampp745\\htd...', 287, Array)
+#1 C:\xampp745\htdocs\charity\system\Security\Security.php(287): setcookie('_aaradhyacsrf_c...', '260a35d378b2c51...', 1605938825, '/', '', false, true)
+#2 C:\xampp745\htdocs\charity\system\Security\Security.php(218): CodeIgniter\Security\Security->CSRFSetCookie(Object(CodeIgniter\HTTP\IncomingRequest))
+#3 C:\xampp745\htdocs\charity\system\Filters\CSRF.php(88): CodeIgniter\Security\Security->CSRFVerify(Object(CodeIgniter\HTTP\IncomingRequest))
+#4 C:\xampp745\htdocs\charity\system\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#5 C:\xampp745\htdocs\charity\system\CodeIgniter.php(382): CodeIgniter\Filters\Filters->run('/', 'before')
+#6 C:\xampp745\htdocs\charity\system\CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp745\htdocs\charity\index.php(56): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2020-11-21 11:22:05 --> Uncaught ErrorException: Cannot modify header information - headers already sent by (output started at C:\xampp745\htdocs\charity\app\Config\Events.php:33) in C:\xampp745\htdocs\charity\system\Debug\Exceptions.php:164
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'Cannot modify h...', 'C:\\xampp745\\htd...', 164, Array)
+#1 C:\xampp745\htdocs\charity\system\Debug\Exceptions.php(164): header('HTTP/1.1 500 In...', true, 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2020-11-21 11:29:06 --> Cannot modify header information - headers already sent by (output started at C:\xampp745\htdocs\charity\app\Config\Events.php:33)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'Cannot modify h...', 'C:\\xampp745\\htd...', 287, Array)
+#1 C:\xampp745\htdocs\charity\system\Security\Security.php(287): setcookie('_aaradhyacsrf_c...', '260a35d378b2c51...', 1605939246, '/', '', false, true)
+#2 C:\xampp745\htdocs\charity\system\Security\Security.php(218): CodeIgniter\Security\Security->CSRFSetCookie(Object(CodeIgniter\HTTP\IncomingRequest))
+#3 C:\xampp745\htdocs\charity\system\Filters\CSRF.php(88): CodeIgniter\Security\Security->CSRFVerify(Object(CodeIgniter\HTTP\IncomingRequest))
+#4 C:\xampp745\htdocs\charity\system\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#5 C:\xampp745\htdocs\charity\system\CodeIgniter.php(382): CodeIgniter\Filters\Filters->run('home', 'before')
+#6 C:\xampp745\htdocs\charity\system\CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp745\htdocs\charity\index.php(54): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2020-11-21 11:29:06 --> Uncaught ErrorException: Cannot modify header information - headers already sent by (output started at C:\xampp745\htdocs\charity\app\Config\Events.php:33) in C:\xampp745\htdocs\charity\system\Debug\Exceptions.php:164
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'Cannot modify h...', 'C:\\xampp745\\htd...', 164, Array)
+#1 C:\xampp745\htdocs\charity\system\Debug\Exceptions.php(164): header('HTTP/1.1 500 In...', true, 500)
+#2 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#3 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2020-11-21 11:40:58 --> Call to a member function getResultArray() on null
+#0 C:\xampp745\htdocs\charity\app\Controllers\Home_c.php(18): App\Models\Frontm\Login_m->get_user()
+#1 C:\xampp745\htdocs\charity\system\CodeIgniter.php(918): App\Controllers\Home_c->index()
+#2 C:\xampp745\htdocs\charity\system\CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_c))
+#3 C:\xampp745\htdocs\charity\system\CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp745\htdocs\charity\index.php(54): CodeIgniter\CodeIgniter->run()
+#5 {main}

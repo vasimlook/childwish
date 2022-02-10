@@ -1,0 +1,13 @@
+CRITICAL - 2020-10-15 10:35:48 --> ini_set(): A session is active. You cannot change the session module's ini settings at this time
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'ini_set(): A se...', '/home/knebxnii/...', 108, Array)
+#1 /home/knebxnii/public_html/aaradhya1/system/Session/Handlers/FileHandler.php(108): ini_set('session.save_pa...', '/home/knebxnii/...')
+#2 /home/knebxnii/public_html/aaradhya1/system/Config/Services.php(732): CodeIgniter\Session\Handlers\FileHandler->__construct(Object(Config\App), '150.107.241.194')
+#3 /home/knebxnii/public_html/aaradhya1/system/Config/BaseService.php(123): CodeIgniter\Config\Services::session(Object(Config\App), false)
+#4 /home/knebxnii/public_html/aaradhya1/system/Config/Services.php(725): CodeIgniter\Config\BaseService::getSharedInstance('session', NULL)
+#5 /home/knebxnii/public_html/aaradhya1/system/HTTP/RedirectResponse.php(110): CodeIgniter\Config\Services::session()
+#6 /home/knebxnii/public_html/aaradhya1/system/Filters/CSRF.php(94): CodeIgniter\HTTP\RedirectResponse->back()
+#7 /home/knebxnii/public_html/aaradhya1/system/Filters/Filters.php(209): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#8 /home/knebxnii/public_html/aaradhya1/system/CodeIgniter.php(427): CodeIgniter\Filters\Filters->run('customer-login', 'before')
+#9 /home/knebxnii/public_html/aaradhya1/system/CodeIgniter.php(357): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /home/knebxnii/public_html/aaradhya1/index.php(62): CodeIgniter\CodeIgniter->run()
+#11 {main}
