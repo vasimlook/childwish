@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -16,13 +18,13 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home_c');  
+$routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
-/**
+/*
  * --------------------------------------------------------------------
  * Route Definitions
  * --------------------------------------------------------------------
@@ -30,19 +32,10 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-
 $routes->get('/', 'Home_c::index');
 $routes->add('404_override', 'Home_c::page404');
 $routes->add('errorpage', 'Home_c::page404');
-//************************************Admin side route****************************//
-
-//************************************Front side route****************************//
-$routes->add('home', 'Home_c::index');
-$routes->add('login', 'Login_c::index');
-$routes->add('logout', 'Login_c::logout');
-//$routes->add('front-refusers/(:any)', 'Home_c::refusers/$1');
-
-/**
+/*
  * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------

@@ -13,12 +13,10 @@ define('BASE_URL',$urllink);
 define('BASE_URL_CI',$urllink);
 define('BASE_URL_DATATABLES',BASE_URL.'/');
 define('BASE_URL_API', 'http://' . $_SERVER['HTTP_HOST'] . implode('/', $subdomain) . '/');
-define('APPNAME', 'Aaradhya Traders  ');
+define('APPNAME', 'SHRUSTI');
 define('UPLOAD_FOLDER', BASE_URL.'/uploads/');
 define('IMG_DIR','uploads/');
 define('FILE_DIR', "/uploads/doc/");
-define('FRONT_ASSETS_FOLDER', BASE_URL.'/assets/front/');
-define('ADMIN_MAIN_ASSETS_FOLDER', BASE_URL.'/assets/admin/');
+define('ASSETS_FOLDER', BASE_URL.'/assets/');
 define('CENTRAL_ASSETS_FOLDER', BASE_URL.'/assets/central/');
-define('EMPLOYEE_ASSETS_FOLDER', BASE_URL.'/assets/employee/');
 ?>

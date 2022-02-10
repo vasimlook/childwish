@@ -2,6 +2,14 @@
 $lifetime=900;
 session_set_cookie_params($lifetime);
 $protocol_http = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+
+//if($protocol_http=='https://'){
+//    ini_set( 'session.cookie_httponly',TRUE);
+//    ini_set('session.cookie_secure', TRUE);
+//}else{
+//    ini_set('session.cookie_samesite', 'None');
+//}
+
 //session_start();
 
 include 'common_url.php';
@@ -29,7 +37,6 @@ $pathsPath = realpath(FCPATH . 'app/Config/Paths.php');
  * our autoloader, along with Composer's, loads our constants
  * and fires up an environment-specific bootstrapping.
  */
-
 // Ensure the current directory is pointing to the front controller's directory
 chdir(__DIR__);
 
@@ -40,10 +47,11 @@ $paths = new Config\Paths();
 $app = require rtrim($paths->systemDirectory, '/ ') . '/bootstrap.php';
 
 if($protocol_http=='https://'){
-    setcookie(session_name(),session_id(),time()+$lifetime,$paths->writableDirectory,1,1,TRUE);
+    setcookie(session_name(),session_id(),time()+$lifetime,$paths->writableDirectory.'session',1,1,TRUE);
 }else{
-    setcookie(session_name(),session_id(),time()+$lifetime,$paths->writableDirectory,null,null,TRUE);
+    setcookie(session_name(),session_id(),time()+$lifetime,$paths->writableDirectory.'session',null,null,TRUE);
 }
+
 /*
  *---------------------------------------------------------------
  * LAUNCH THE APPLICATION

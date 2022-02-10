@@ -1,5 +1,5 @@
 <?php
-
+include APPPATH . 'ThirdParty/imgresize/lib/ImageResize.php';
 function set_checked($desired_value1, $new_value1) {
     if ($desired_value1 == $new_value1) {
         echo ' checked="true"';
@@ -81,7 +81,6 @@ if (!function_exists('successOrErrorMessage')) {
         $_SESSION[$type] = 1;
         $_SESSION['message'] = $message;
     }
-
 }
 
 function set_selected($desired_value, $new_value) {
@@ -142,96 +141,34 @@ function lasturl() {
     return $link;
 }
 
-
-
-function sessionCustomer($row) { 
+function sessionAdmin($row) {  
     $session_data=array();
-    foreach ($row as $key => &$value) {                     
-            $session_data['customer'][$key] = $value;        
+    foreach ($row as $key => &$value) {        
+            $session_data['admin'][$key] = $value;        
     }    
-    $session_data['customer']['customer_usertype'] = 'customer';   
+    $session_data['admin']['admin_usertype'] = 'admin';   
     return $session_data;
 }
-
-function sessionAdmin($row) {    
-    foreach ($row as $key => &$value) {        
-            $_SESSION['admin'][$key] = $value;        
-    }    
-    $_SESSION['admin']['admin_usertype'] = 'admin'; 
-//    $_SESSION['admin']['admin_time'] = time();
-//    $_SESSION['admin'][$_SESSION['admin']['admin_usertype'].'_session_id'] = session_create_id();    
-    return true;
-}
 function sessionCheckAdmin() {
-    if ((!isset($_SESSION['admin']['admin_user_id'])) || !isset($_SESSION['admin']['admin_usertype'])) {    
-        header('Location: ' . ADMIN_LOGIN_LINK);
+    if ((!isset($_SESSION['admin']['admin_id'])) || !isset($_SESSION['admin']['admin_usertype'])) {    
+        header('Location: ' . MASTER_ADMIN_LOGIN_LINK);
         exit();
     }
     if (isset($_SESSION['admin']['admin_usertype'])) {
         if ($_SESSION['admin']['admin_usertype'] != 'admin') {            
-            header('Location: ' . ADMIN_LOGIN_LINK);
+            header('Location: ' . MASTER_ADMIN_LOGIN_LINK);
             exit();
         }
     }
-//    if (auto_logout("admin","admin_time")) {
-//        header('Location: ' . ADMIN_LOGIN_LINK);
-//        exit;
-//    }
     return true;
 }
-function sessionEmployee($row) { 
-    $session_data=array();
-    foreach ($row as $key => &$value) {                
-        $session_data['employee'][$key] = $value;        
-    }    
-    $session_data['employee']['employee_usertype'] = 'employee';        
-    return $session_data;
-}
-function sessionCheckCustomer() {
-    if ((!isset($_SESSION['customer']['customer_id'])) || !isset($_SESSION['customer']['customer_usertype'])) {        
-        header('Location: ' . FRONT_LOGIN_LINK);
-        exit();
-    }    
-    if (isset($_SESSION['customer']['customer_usertype'])) {
-        if ($_SESSION['customer']['customer_usertype'] != 'customer') {            
-            header('Location: ' . FRONT_LOGIN_LINK);
-            exit();
-        }
-    }    
-//    if (auto_logout("customer","customer_time")) {
-//        header('Location: ' . FRONT_LOGIN_LINK);
-//        exit();
-//    } 
-    return true;
-}
-function sessionCheckEmployee() {     
-    if (!isset($_SESSION['employee']['employee_user_id']) || !isset($_SESSION['employee']['employee_usertype'])) {                 
-        header('Location: ' . EMPLOYEE_LOGIN_LINK);        
-        exit();
-    }
-    if (isset($_SESSION['employee']['employee_usertype'])) {
-        if ($_SESSION['employee']['employee_usertype'] != 'employee') {            
-            header('Location: ' . EMPLOYEE_LOGIN_LINK);
-            exit();
-        }
-    }
-//    if (auto_logout("employee","employee_time")) {
-//        header('Location: ' . EMPLOYEE_LOGIN_LINK);
-//        exit();
-//    }
-    return true;
-}
-
 function logoutUser($usertype) {
-    if($usertype=='customer'){
-        unset($_SESSION['customer']); 
+    if($usertype=='vendor'){
+        unset($_SESSION['vendor']); 
     }
-//    if($usertype=='admin'){
-//        unset($_SESSION['admin']); 
-//    }
-//    if($usertype=='employee'){
-//        unset($_SESSION['employee']); 
-//    }           
+    if($usertype=='admin'){
+        unset($_SESSION['admin']); 
+    }           
     return true;
 }
 
@@ -490,7 +427,7 @@ if (!function_exists('fileUpload')) {
             }
             if (empty($errors) == true) {
 
-                $filename_join_upload=substr($file_name, 0, strpos($file_name, "."));
+                $filename_join_upload=str_replace(' ', '-',substr($file_name, 0, strpos($file_name, ".")));
                 
                 $RandomNum = time() . date("-Ymd-hisa");
 
@@ -604,35 +541,28 @@ if (!function_exists('reArrayFiles')) {
 
 }
 
-if (!function_exists('imageResizeLib')) {
+if (!function_exists('resizeLib')) {
 
-    function imageResizeLib($file, $filepath_original, $path_size) {
-        include APPPATH . 'ThirdParty/Imageresize/Imageresize.php'; 
-        if ($file) {
-
-            $image = new \Eventviva\Imageresize($file);
-
+    function resizeLib($file, $filepath_original, $path_size) {                      
+        if ($file) {                                   
+            $image = new \Gumlet\ImageResize($file);
             $image->save($filepath_original);
 
             if ($path_size && !empty($path_size)) {
 
-                foreach ($path_size as $ps) {
-
+                foreach ($path_size as $ps) {                    
                     if (isset($ps['size']) && isset($ps['path'])) {
-
+                                             
                         $image->resizeToBestFit($ps['size'], $ps['size']);
 
                         $image->save($ps['path']);
                     }
                 }
-
                 return true;
             }
         }
-
         return false;
     }
-
 }
 if (!function_exists('imageUpload')) {
 
@@ -714,13 +644,12 @@ if (!function_exists('imageUpload')) {
                     array('path' => $output_subdir2 . $NewImageName, 'size' => 300),
                     array('path' => $output_subdir3 . $NewImageName, 'size' => 100)
                 );
-                if (imageResizeLib($file_tmp, $filepath_original, $path_size)) {
+                if (resizeLib($file_tmp, $filepath_original, $path_size)) {
                     $data["file_name"] = $NewImageName;
                     $data['original_file_name'] = $file_name;
                     $data["file_ext"] = $file_ext;
                     $message = 'File uploaded successfully';
-                    return array(true, $message, $data);
-                    die;
+                    return array(true, $message, $data);                   
                 } else {
                     $message = "Invalid, File not correct";
                     return array(false, $message, $data);
@@ -778,10 +707,3 @@ function forget_password_uuid($user_id,$user_type='',$action = 'e') {
         return $res; 
     }
 }
-// This function will return a random 
-    // string of specified length 
-    function user_unique_alphanumeic_id($length_of_string) 
-    {        
-        $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';      
-        return substr(str_shuffle($str_result),0, $length_of_string); 
-    } 
