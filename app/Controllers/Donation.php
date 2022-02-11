@@ -10,9 +10,9 @@ class Donation extends BaseController
         helper('functions');
         $this->security = \Config\Services::security();                        
     }
-    public function index()
+    public function donation()
     {
-        $data['title'] = ABOUT_US; 
+        $data['title'] = DONATE_NOW; 
         echo front_view('donation',$data);
     }
     public function page404() {        

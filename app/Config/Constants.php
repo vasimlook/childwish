@@ -84,6 +84,7 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 //**************************************TITLE****************************//
 define('HOME', 'HOME');
 define('ABOUT_US', 'About us');
+define('DONATE_NOW', 'Donate now');
 define('DISCLAIMER', 'Dislaimer');
 define('PRIVACY', 'Privacy Policy');
 define('CAREER','Careers');

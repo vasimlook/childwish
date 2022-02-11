@@ -35,6 +35,13 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home_c::index');
 $routes->add('404_override', 'Home_c::page404');
 $routes->add('errorpage', 'Home_c::page404');
+
+
+/* START DONATION ROUTES */
+$routes->add('donation', 'Donation::donation');
+
+
+/* END DONATION ROUTES */
 /*
  * --------------------------------------------------------------------
  * Additional Routing
