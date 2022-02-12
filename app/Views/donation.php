@@ -35,20 +35,10 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-lg-4">
-                                        <label class="mb-1 text-2">First Name</label>
-                                        <input type="text" value="" data-msg-required="Please enter your first name." maxlength="100" class="form-control text-3 h-auto py-2" name="firstname" required>
+                                    <div class="form-group col">
+                                        <label class="mb-1 text-2">Full Name</label>
+                                        <input type="text" value="" data-msg-required="Please enter your full name." maxlength="100" class="form-control text-3 h-auto py-2" name="firstname" required>
                                     </div>
-
-                                    <div class="form-group col-lg-4">
-                                        <label class="mb-1 text-2">Middle Name</label>
-                                        <input type="text" value="" data-msg-required="Please enter your middle name." maxlength="100" class="form-control text-3 h-auto py-2" name="middlename" required>
-                                    </div>
-
-                                    <div class="form-group col-lg-4">
-                                        <label class="mb-1 text-2">Last Name</label>
-                                        <input type="text" value="" data-msg-required="Please enter your last name." maxlength="100" class="form-control text-3 h-auto py-2" name="lastname" required>
-                                    </div>                                    
                                 </div>
                                 <div class="form-row">                               
                                     <div class="form-group col">
@@ -64,8 +54,8 @@
                                 </div>                                
                                 <div class="form-row">
                                     <div class="form-group col">
-                                        <label class="mb-1 text-2">Comment</label>
-                                        <textarea maxlength="5000" data-msg-required="Please enter your comment." rows="8" class="form-control text-3 h-auto py-2" name="message" ></textarea>
+                                        <label class="mb-1 text-2">Amount</label>
+                                        <input type="number" value="" data-msg-required="Please enter amount." data-msg-email="Please enter a valid amount." class="form-control text-3 h-auto py-2" name="amount" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
