@@ -30,7 +30,7 @@
                     <div class="row py-4">
                         <div class="col-lg-6">                                    
 
-                            <form action="https://www.example.com/payment/success/" method="POST">
+                            <form action="<?= DONATION_SUCCESS ?>" method="POST">
                                 <script
                                     src="https://checkout.razorpay.com/v1/checkout.js"
                                     data-key="<?= RAZERPAY_KEY ?>" // Enter the Test API Key ID generated from Dashboard → Settings → API Keys

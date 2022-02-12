@@ -86,6 +86,7 @@ define('HOME', 'HOME');
 define('ABOUT_US', 'About us');
 define('DONATE_NOW', 'Donate now');
 define('DONATE_NOW_STEP_2', 'Donate now');
+define('DONATE_SUCCESS', 'Donate success');
 define('DISCLAIMER', 'Dislaimer');
 define('PRIVACY', 'Privacy Policy');
 define('CAREER','Careers');
@@ -102,6 +103,7 @@ define('HOWCANYOUHELP','How can you help');
 
 define('DONATION_LINK',BASE_URL.'/donation');
 define('DONATION_STEP_2_LINK',BASE_URL.'/donation/step_2');
+define('DONATION_SUCCESS',BASE_URL.'/donation/success');
 
 
 //*******************************RAZERPAY CREDENTIAL************************************* */
