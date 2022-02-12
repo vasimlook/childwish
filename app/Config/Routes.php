@@ -39,6 +39,7 @@ $routes->add('errorpage', 'Home_c::page404');
 
 /* START DONATION ROUTES */
 $routes->add('donation', 'Donation::donation');
+$routes->add('donation/step_2', 'Donation::donation_step_2');
 
 
 /* END DONATION ROUTES */

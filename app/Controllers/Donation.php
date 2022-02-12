@@ -15,6 +15,11 @@ class Donation extends BaseController
         $data['title'] = DONATE_NOW; 
         echo front_view('donation',$data);
     }
+
+    public function donation_step_2(){
+        $data['title'] = DONATE_NOW_STEP_2; 
+        echo front_view('donation_step_2',$data);
+    }
     public function page404() {        
         $data['title'] = 'error';        
         echo single_page('errors/html/custome_error_404',$data);
