@@ -97,3 +97,6 @@ define('OUR_PROJECT','Issuse & views');
 define('BLOG','Blogs');
 define('ACKNOWLEDGEMENT','Acknowlwdgement');
 define('HOWCANYOUHELP','How can you help');
+
+
+define('DONATION_LINK',BASE_URL.'/donation');

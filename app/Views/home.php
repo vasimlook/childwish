@@ -32,7 +32,7 @@
                     </div>
                 </div> 
                 <div class="col-md-12 mb-2 pt-md-5">
-                    <a href="#" class="btn btn-primary font-weight-semibold text-4 btn-px-5 btn-py-2 col-sm-12">Donate Now</a>
+                    <a href="<?php echo DONATION_LINK; ?>" class="btn btn-primary font-weight-semibold text-4 btn-px-5 btn-py-2 col-sm-12">Donate Now</a>
                 </div>                 
             </div>            
         </div>        
