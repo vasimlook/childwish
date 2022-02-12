@@ -162,7 +162,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $sessionCookieName = 'shrusti_session';
+	public $sessionCookieName = 'childwish_session';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -242,7 +242,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $cookiePrefix = '_shrusti';
+	public $cookiePrefix = '_childwish';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -338,7 +338,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $CSRFTokenName = 'csrf_shrusti';
+	public $CSRFTokenName = 'csrf_childwish';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -364,7 +364,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $CSRFCookieName = 'csrf_cookie_shrusti';
+	public $CSRFCookieName = 'csrf_cookie_childwish';
 
 	/**
 	 * --------------------------------------------------------------------------

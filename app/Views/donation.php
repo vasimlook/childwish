@@ -24,7 +24,13 @@
 
                             <h2 class="font-weight-bold text-8 mt-2 mb-0">Donate Now</h2>                            
 
-                            <form name="donation_form" class="donation-form" action="<?= DONATION_STEP_2_LINK ?>" method="POST">                               
+                                                        
+
+
+                                <?php
+                                    $attributes = ['class' => 'donation-form', 'method' => 'POST', 'name' => 'donation_form'];
+                                    echo form_open(DONATION_STEP_2_LINK, $attributes);
+                                ?> 
 
                                 <div class="form-row">
                                     <div class="form-group col">
@@ -55,7 +61,7 @@
                                         <input type="submit" value="Donate Now" class="btn btn-primary btn-modern" data-loading-text="Loading...">
                                     </div>
                                 </div>
-                            </form>
+                                <?php echo form_close(); ?> 
 
                         </div>
                         <div class="col-lg-6">
