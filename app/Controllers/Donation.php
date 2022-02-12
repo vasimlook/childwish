@@ -17,6 +17,20 @@ class Donation extends BaseController
     }
 
     public function donation_step_2(){
+
+        $fullName = (isset($_REQUEST['fullname'])) ? trim($_REQUEST['fullname']) : "Vishal Patel";
+        $emailAddress = (isset($_REQUEST['email'])) ? trim($_REQUEST['email']) : "ivishalonline@gmail.com";
+        $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "9978780710";
+        $amount = (isset($_REQUEST['amount'])) ? trim($_REQUEST['amount']) : "10";
+      
+        $paymentsData = array(
+            'fullName' => $fullName,
+            'emailAddress' => $emailAddress,
+            'mobileNumber' => $mobileNumber,
+            'amount' => $amount
+        );
+
+        $data['razerPay'] = $paymentsData;        
         $data['title'] = DONATE_NOW_STEP_2; 
         echo front_view('donation_step_2',$data);
     }

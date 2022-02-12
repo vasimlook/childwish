@@ -24,20 +24,12 @@
 
                             <h2 class="font-weight-bold text-8 mt-2 mb-0">Donate Now</h2>                            
 
-                            <form class="contact-form" action="#" method="POST">
-                                <div class="contact-form-success alert alert-success d-none mt-4">
-                                    <strong>Success!</strong> Your message has been sent to us.
-                                </div>
-
-                                <div class="contact-form-error alert alert-danger d-none mt-4">
-                                    <strong>Error!</strong> There was an error sending your message.
-                                    <span class="mail-error-message text-1 d-block"></span>
-                                </div>
+                            <form name="donation_form" class="donation-form" action="<?= DONATION_STEP_2_LINK ?>" method="POST">                               
 
                                 <div class="form-row">
                                     <div class="form-group col">
                                         <label class="mb-1 text-2">Full Name</label>
-                                        <input type="text" value="" data-msg-required="Please enter your full name." maxlength="100" class="form-control text-3 h-auto py-2" name="firstname" required>
+                                        <input type="text" value="" data-msg-required="Please enter your full name." maxlength="100" class="form-control text-3 h-auto py-2" name="fullname" required>
                                     </div>
                                 </div>
                                 <div class="form-row">                               
