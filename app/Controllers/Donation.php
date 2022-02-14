@@ -26,12 +26,32 @@ class Donation extends BaseController
         $emailAddress = (isset($_REQUEST['email'])) ? trim($_REQUEST['email']) : "";
         $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "";
         $amount = (isset($_REQUEST['amount'])) ? trim($_REQUEST['amount']) : "10";
+
+        $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
+
+        $create_order = $api->order->create(
+                                        array(
+                                            'receipt' => '123',
+                                            'amount' => $amount * 100,
+                                            'currency' => 'INR',
+                                            'notes'=>
+                                            array(
+                                                'key1'=> 'value3',
+                                                'key2'=> 'value2'
+                                            )
+                                        )
+                                    );
+        $array = (array) $create_order;
+        $prefix = chr(0).'*'.chr(0);
+        $razer_orders_data = $array[$prefix.'attributes'];
+        $razer_orders_id = $razer_orders_data['id'];        
       
         $paymentsData = array(
             'fullName' => $fullName,
             'emailAddress' => $emailAddress,
             'mobileNumber' => $mobileNumber,
-            'amount' => $amount
+            'amount' => $amount,
+            'orders_id' => $razer_orders_id
         );
         $data['razerPay'] = $paymentsData;        
         $data['title'] = DONATE_NOW_STEP_2; 
@@ -49,4 +69,6 @@ class Donation extends BaseController
         $data['title'] = 'error';        
         echo single_page('errors/html/custome_error_404',$data);
     }
+
+    
 }
