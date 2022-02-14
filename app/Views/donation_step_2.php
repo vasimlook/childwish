@@ -29,8 +29,10 @@
 
                     <div class="row py-4">
                         <div class="col-lg-6">                                    
-
-                            <form action="<?= DONATION_SUCCESS ?>" method="POST">
+                                <?php
+                                    $attributes = ['method' => 'POST'];
+                                    echo form_open(DONATION_SUCCESS, $attributes);
+                                ?>                            
                                 <script
                                     src="https://checkout.razorpay.com/v1/checkout.js"
                                     data-key="<?= RAZERPAY_KEY ?>" // Enter the Test API Key ID generated from Dashboard → Settings → API Keys
@@ -46,9 +48,8 @@
                                     data-prefill.contact="<?= $mobileNumber ?>"
                                     data-theme.color="#F37254"
                                 ></script>
-<input type="hidden" custom="Hidden Element" name="hidden">
-</form>
-
+                            <input type="hidden" custom="Hidden Element" name="hidden">
+                        <?php echo form_close(); ?>
                         </div>
                         <div class="col-lg-6">
 

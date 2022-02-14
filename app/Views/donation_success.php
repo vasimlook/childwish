@@ -1,9 +1,9 @@
 <?php   
-    $fullName = $razerPay['fullName'];
-    $emailAddress = $razerPay['emailAddress'];
-    $mobileNumber = $razerPay['mobileNumber'];
-    $amount = (float)$razerPay['amount'];
-    $id = rand().$mobileNumber;
+    // $fullName = $razerPay['fullName'];
+    // $emailAddress = $razerPay['emailAddress'];
+    // $mobileNumber = $razerPay['mobileNumber'];
+    // $amount = (float)$razerPay['amount'];
+    // $id = rand().$mobileNumber;
 ?>
 
 <div role="main" class="main">
