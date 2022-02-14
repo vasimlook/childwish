@@ -16,17 +16,11 @@
     </section>
 <!--
     <div id="googlemaps" class="google-map mt-0" style="height: 500px;"></div>-->
-
                 <div class="container">
-
                     <div class="row py-4">
                         <div class="col-lg-6">
 
-                            <h2 class="font-weight-bold text-8 mt-2 mb-0">Donate Now</h2>                            
-
-                                                        
-
-
+                            <h2 class="font-weight-bold text-8 mt-2 mb-0">Donate Now</h2>                                                                        
                                 <?php
                                     $attributes = ['class' => 'donation-form', 'method' => 'POST', 'name' => 'donation_form'];
                                     echo form_open(DONATION_STEP_2_LINK, $attributes);
