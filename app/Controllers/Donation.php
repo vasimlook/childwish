@@ -39,8 +39,9 @@ class Donation extends BaseController
     }
 
     public function donation_success(){         
-        $api = new Api($api_key, RAZERPAY_KEY);
-        $api->payment->fetch($_REQUEST['razorpay_payment_id']);
+        $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
+        $res=$api->payment->fetch($_REQUEST['razorpay_payment_id']);
+        print_r($res);die;
         $data['title'] = DONATE_SUCCESS; 
         echo front_view('donation_success',$data);
     }

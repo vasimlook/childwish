@@ -107,4 +107,8 @@ define('DONATION_SUCCESS',BASE_URL.'/donation/success');
 
 
 //*******************************RAZERPAY CREDENTIAL************************************* */
-define('RAZERPAY_KEY','rzp_test_tA6sI04IrNyVbh');
+// define('RAZERPAY_KEY','rzp_test_tA6sI04IrNyVbh');
+
+define('RAZERPAY_KEY','rzp_test_67c6z4RQsZf9QJ');
+define('RAZERPAY_KEY_SECRET','goRrQIq81ujRGtnwEbvbJTxu');
+
