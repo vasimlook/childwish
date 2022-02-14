@@ -19,9 +19,9 @@ class Donation extends BaseController
 
     public function donation_step_2(){  
         helper('form');      
-        $fullName = (isset($_REQUEST['fullname'])) ? trim($_REQUEST['fullname']) : "Vishal Patel";
-        $emailAddress = (isset($_REQUEST['email'])) ? trim($_REQUEST['email']) : "ivishalonline@gmail.com";
-        $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "9978780710";
+        $fullName = (isset($_REQUEST['fullname'])) ? trim($_REQUEST['fullname']) : "";
+        $emailAddress = (isset($_REQUEST['email'])) ? trim($_REQUEST['email']) : "";
+        $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "";
         $amount = (isset($_REQUEST['amount'])) ? trim($_REQUEST['amount']) : "10";
       
         $paymentsData = array(
