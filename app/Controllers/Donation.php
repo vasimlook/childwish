@@ -1,5 +1,5 @@
 <?php namespace App\Controllers;
-require('razorpay-php/Razorpay.php');
+require(APPPATH.'/ThirdParty/razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError; 
 class Donation extends BaseController
@@ -38,14 +38,9 @@ class Donation extends BaseController
         echo front_view('donation_step_2',$data);
     }
 
-    public function donation_success(){ 
-        
-        
-        
-        print_r($_REQUEST);die;  
-        
+    public function donation_success(){         
         $api = new Api($api_key, RAZERPAY_KEY);
-        $api->payment->fetch($paymentId);
+        $api->payment->fetch($_REQUEST['razorpay_payment_id']);
         $data['title'] = DONATE_SUCCESS; 
         echo front_view('donation_success',$data);
     }
