@@ -20,5 +20,27 @@ class Customers_model extends Model {
         $customer->insert($customersData);
         return $this->db->insertID();
     }
+
+    public function customers_exist($email_address){
+
+        $customer = $this->db->table('child_wish_customers');
+        $customer->where('email', $email_address);         
+        $query = $customer->get();
+
+        $customers = $query->getRowArray();
+
+        if(is_array($customers) && sizeof($customers) > 0 && $customers['customers_id']){
+
+            return array(
+                'exist'=> true,
+                'customers_id' => $customers['customers_id']
+            );            
+        }
+
+        return array(
+            'exist' => false,
+        );       
+        
+    }
    
 }
