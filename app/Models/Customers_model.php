@@ -41,6 +41,12 @@ class Customers_model extends Model {
             'exist' => false,
         );       
         
+    }   
+
+    public function update_customers($customers_id,$customersData){
+        $builder = $this->db->table('child_wish_customers');
+        $builder->where('customers_id', $customers_id);        
+        return $builder->update($customersData);
     }
    
 }

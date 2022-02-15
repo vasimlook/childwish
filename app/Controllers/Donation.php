@@ -25,7 +25,7 @@ class Donation extends BaseController
     }
 
     public function donation_step_2(){  
-        // helper('form');      
+        helper('form');      
         $fullName = (isset($_REQUEST['fullname'])) ? trim($_REQUEST['fullname']) : "";
         $emailAddress = (isset($_REQUEST['email'])) ? trim($_REQUEST['email']) : "";
         $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "";
@@ -39,16 +39,18 @@ class Donation extends BaseController
         );
         
 
-        $customers_exist = $this->Customers_m->customers_exist($emailAddress);
+        $customers_exist = $this->Customers_m->customers_exist($emailAddress);      
 
         if(isset($customers_exist['customers_id'])){
             $customers_id = $customers_exist['customers_id'];
+            unset($customersData['created_at']);
+            $customersData['updated_at'] = $date;
+            $this->Customers_m->update_customers($customers_id,$customersData);
         }else{
             $customers_id = $this->Customers_m->create_customers($customersData);
         }
-
-        echo $customers_id;exit;
-        if($customers_id){
+        
+        if($customers_id){            
             $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
 
             $create_order = $api->order->create(
