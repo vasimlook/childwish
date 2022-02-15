@@ -2,16 +2,20 @@
 require(APPPATH.'/ThirdParty/razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError; 
+use App\Models\Customers_model;
 class Donation extends BaseController
 {
     private $security;     
     protected $session;
+    private $Customers_m;
     public function __construct() {         
         $this->session = \Config\Services::session();
         $this->session->start(); 
         helper('url');
         helper('functions');
-        $this->security = \Config\Services::security();                      
+        $this->Customers_m = new Customers_model(); 
+        $this->security = \Config\Services::security();          
+                         
     }
     public function donation()
     {
@@ -26,36 +30,48 @@ class Donation extends BaseController
         $emailAddress = (isset($_REQUEST['email'])) ? trim($_REQUEST['email']) : "";
         $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "";
         $amount = (isset($_REQUEST['amount'])) ? trim($_REQUEST['amount']) : "10";
-
-        $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
-
-        $create_order = $api->order->create(
-                                        array(
-                                            'receipt' => '123',
-                                            'amount' => $amount * 100,
-                                            'currency' => 'INR',
-                                            'notes'=>
-                                            array(
-                                                'key1'=> 'value3',
-                                                'key2'=> 'value2'
-                                            )
-                                        )
-                                    );
-        $array = (array) $create_order;
-        $prefix = chr(0).'*'.chr(0);
-        $razer_orders_data = $array[$prefix.'attributes'];
-        $razer_orders_id = $razer_orders_data['id'];        
-      
-        $paymentsData = array(
-            'fullName' => $fullName,
-            'emailAddress' => $emailAddress,
-            'mobileNumber' => $mobileNumber,
-            'amount' => $amount,
-            'orders_id' => $razer_orders_id
+        $date = date("Y-m-d H:i:s");
+        $customersData = array(
+            'fullname' => $fullName,
+            'email'=> $emailAddress,
+            'phone_number' => $mobileNumber,
+            'created_at' => $date
         );
-        $data['razerPay'] = $paymentsData;        
-        $data['title'] = DONATE_NOW_STEP_2; 
-        echo front_view('donation_step_2',$data);
+       
+        $customers_id = $this->Customers_m->create_customers($customersData);
+        
+        if($customers_id){
+            $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
+
+            $create_order = $api->order->create(
+                                            array(
+                                                'receipt' => '123',
+                                                'amount' => $amount * 100,
+                                                'currency' => 'INR',
+                                                'notes'=>
+                                                array(
+                                                    'key1'=> 'value3',
+                                                    'key2'=> 'value2'
+                                                )
+                                            )
+                                        );
+            $array = (array) $create_order;
+            $prefix = chr(0).'*'.chr(0);
+            $razer_orders_data = $array[$prefix.'attributes'];
+            $razer_orders_id = $razer_orders_data['id'];        
+          
+            $paymentsData = array(
+                'fullName' => $fullName,
+                'emailAddress' => $emailAddress,
+                'mobileNumber' => $mobileNumber,
+                'amount' => $amount,
+                'orders_id' => $razer_orders_id
+            );
+            $data['razerPay'] = $paymentsData;        
+            $data['title'] = DONATE_NOW_STEP_2; 
+            echo front_view('donation_step_2',$data);
+        }
+       
     }
 
     public function donation_success(){         
