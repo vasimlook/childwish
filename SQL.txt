@@ -47,3 +47,60 @@ CREATE TABLE `child_wish_customers` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4
 
 ====================================================================================
+
+====================================================================================
+CREATE TABLE `donation_projetcts` (
+  `projects_id` int(11) NOT NULL AUTO_INCREMENT,
+  `projetcs_title` varchar(100) DEFAULT NULL,
+  `projetcts_description` text DEFAULT NULL,
+  `projetct_image` varchar(100) DEFAULT NULL,
+  `target_amount` float(15,4) NOT NULL DEFAULT 0.0000,
+  `received_amount` float(15,4) NOT NULL DEFAULT 0.0000,
+  `amount_start_date` datetime NOT NULL,
+  `amount_end_date` datetime NOT NULL,
+  `urgent_need` int(1) NOT NULL DEFAULT 0 COMMENT '1= yes',
+  `projects_status` int(1) NOT NULL COMMENT '1 = active , 0 = deactive',
+  `projects_owner` int(11) NOT NULL COMMENT 'id of owner of project person',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL COMMENT 'admin id of creater',
+  PRIMARY KEY (`projects_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+========================================================================================
+
+========================================================================================
+CREATE TABLE `donation_projects_images` (
+  `image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `projects_id` int(11) NOT NULL,
+  `image_name` varchar(200) DEFAULT NULL,
+  `active` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`image_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+=============================================================================================
+
+=============================================================================================
+CREATE TABLE `donation_projects_comments` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `projetcts_id` int(11) NOT NULL,
+  `comment_user_id` int(11) NOT NULL,
+  `comment_user_name` varchar(50) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `is_reply` int(1) NOT NULL DEFAULT 0,
+  `reply_on` int(11) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`comment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+=================================================================================================
+
+=================================================================================================
+
+CREATE TABLE `donation_projects_medical_documents` (
+  `document_id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_title` varchar(50) NOT NULL,
+  `document` varchar(100) DEFAULT NULL,
+  `activate` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`document_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+===================================================================================================
