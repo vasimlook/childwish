@@ -100,45 +100,49 @@ class Donation extends BaseController
     }
 
     public function donation_success(){         
-        $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
-        $res = $api->payment->fetch($_REQUEST['razorpay_payment_id']);
 
-        $res = (array) $res;
-        $prefix = chr(0).'*'.chr(0);
-        $razer_payments_data = $res[$prefix.'attributes'];
-
-        if((is_array($razer_payments_data) && sizeof($razer_payments_data) > 0 ) &&
-            (isset($razer_payments_data['order_id']) && $razer_payments_data['order_id'] != '') &&
-            (isset($razer_payments_data['status']) && $razer_payments_data['status'] == 'captured') &&
-            (isset($razer_payments_data['captured']) && ($razer_payments_data['captured'] == 1 || $razer_payments_data['captured'] == '1' ))
-        ){
-            $rp = $razer_payments_data;
-            $orders_id = $razer_payments_data['order_id'];
-            $paymentDate = date("Y-m-d H:i:s");
-            $payments = array(
-                'razer_payment_id' => $rp['id'],
-                'currency' => $rp['currency'],
-                'amount' => $rp['amount']/100,
-                'status' => $rp['status'],
-                'captured' =>  $rp['captured'],
-                'card_id' =>  $rp['card_id'],
-                'method' => $rp['method'],
-                'amount_refunded' => $rp['amount_refunded'],
-                'refund_status' => $rp['refund_status'],
-                'bank' => $rp['bank'],
-                'wallet' => $rp['wallet'],
-                'vpa' => $rp['vpa'],
-                'international' => $rp['international'],
-                'fee' => $rp['fee'],
-                'tax' => $rp['tax'],
-                'entity' => $rp['entity'],
-                'payement_date' => $paymentDate,
-            );
-
-            $update_payments = $this->Donation_m->update_donation($orders_id,$payments);
-            $data['title'] = DONATE_SUCCESS; 
-            echo front_view('donation_success',$data);
-        }        
+        if(isset($_REQUEST['razorpay_payment_id']) && $_REQUEST['razorpay_payment_id'] != ''){
+            $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
+            $res = $api->payment->fetch($_REQUEST['razorpay_payment_id']);
+    
+            $res = (array) $res;
+            $prefix = chr(0).'*'.chr(0);
+            $razer_payments_data = $res[$prefix.'attributes'];
+    
+            if((is_array($razer_payments_data) && sizeof($razer_payments_data) > 0 ) &&
+                (isset($razer_payments_data['order_id']) && $razer_payments_data['order_id'] != '') &&
+                (isset($razer_payments_data['status']) && $razer_payments_data['status'] == 'captured') &&
+                (isset($razer_payments_data['captured']) && ($razer_payments_data['captured'] == 1 || $razer_payments_data['captured'] == '1' ))
+            ){
+                $rp = $razer_payments_data;
+                $orders_id = $razer_payments_data['order_id'];
+                $paymentDate = date("Y-m-d H:i:s");
+                $payments = array(
+                    'razer_payment_id' => $rp['id'],
+                    'currency' => $rp['currency'],
+                    'amount' => $rp['amount']/100,
+                    'status' => $rp['status'],
+                    'captured' =>  $rp['captured'],
+                    'card_id' =>  $rp['card_id'],
+                    'method' => $rp['method'],
+                    'amount_refunded' => $rp['amount_refunded'],
+                    'refund_status' => $rp['refund_status'],
+                    'bank' => $rp['bank'],
+                    'wallet' => $rp['wallet'],
+                    'vpa' => $rp['vpa'],
+                    'international' => $rp['international'],
+                    'fee' => $rp['fee'],
+                    'tax' => $rp['tax'],
+                    'entity' => $rp['entity'],
+                    'payement_date' => $paymentDate,
+                );
+    
+                $update_payments = $this->Donation_m->update_donation($orders_id,$payments);
+                $data['title'] = DONATE_SUCCESS; 
+                echo front_view('donation_success',$data);
+            }         
+        }
+        
     }
     public function page404() {        
         $data['title'] = 'error';        
