@@ -35,68 +35,70 @@ class Donation extends BaseController
         $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "";
         $amount = (isset($_REQUEST['amount'])) ? trim($_REQUEST['amount']) : "10";
         $date = date("Y-m-d H:i:s");
-        $customersData = array(
-            'fullname' => $fullName,
-            'email'=> $emailAddress,
-            'phone_number' => $mobileNumber,
-            'created_at' => $date
-        );
-        
 
-        $customers_exist = $this->Customers_m->customers_exist($emailAddress);      
-
-        if(isset($customers_exist['customers_id'])){
-            $customers_id = $customers_exist['customers_id'];
-            unset($customersData['created_at']);
-            $customersData['updated_at'] = $date;
-            $this->Customers_m->update_customers($customers_id,$customersData);
-        }else{
-            $customers_id = $this->Customers_m->create_customers($customersData);
-        }
-        
-        if($customers_id){            
-            $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
-
-            $create_order = $api->order->create(
-                                            array(
-                                                'receipt' => '',
-                                                'amount' => $amount * 100,
-                                                'currency' => 'INR',
-                                                'notes'=>
+        if($fullName !== "" && $emailAddress !== "" && $mobileNumber !== "" && $amount !== ""){
+            $customersData = array(
+                'fullname' => $fullName,
+                'email'=> $emailAddress,
+                'phone_number' => $mobileNumber,
+                'created_at' => $date
+            );
+            
+    
+            $customers_exist = $this->Customers_m->customers_exist($emailAddress);      
+    
+            if(isset($customers_exist['customers_id'])){
+                $customers_id = $customers_exist['customers_id'];
+                unset($customersData['created_at']);
+                $customersData['updated_at'] = $date;
+                $this->Customers_m->update_customers($customers_id,$customersData);
+            }else{
+                $customers_id = $this->Customers_m->create_customers($customersData);
+            }
+            
+            if($customers_id){            
+                $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
+    
+                $create_order = $api->order->create(
                                                 array(
-                                                    'key1'=> 'value3',
-                                                    'key2'=> 'value2'
+                                                    'receipt' => '',
+                                                    'amount' => $amount * 100,
+                                                    'currency' => 'INR',
+                                                    'notes'=>
+                                                    array(
+                                                        'key1'=> 'value3',
+                                                        'key2'=> 'value2'
+                                                    )
                                                 )
-                                            )
-                                        );
-            $array = (array) $create_order;
-            $prefix = chr(0).'*'.chr(0);
-            $razer_orders_data = $array[$prefix.'attributes'];
-            $razer_orders_id = $razer_orders_data['id'];
-
-            if($razer_orders_id){
-                $date = date("Y-m-d H:i:s");
-                $ordersData = array(
-                    'customers_id' => $customers_id,
-                    'razer_orders_id' => $razer_orders_id,
-                    'order_creation_date' => $date
-                );
-                $child_oreders_id = $this->Donation_m->create_order($ordersData);
-                if($child_oreders_id){
-                    $paymentsData = array(
-                        'fullName' => $fullName,
-                        'emailAddress' => $emailAddress,
-                        'mobileNumber' => $mobileNumber,
-                        'amount' => $amount,
-                        'orders_id' => $razer_orders_id
+                                            );
+                $array = (array) $create_order;
+                $prefix = chr(0).'*'.chr(0);
+                $razer_orders_data = $array[$prefix.'attributes'];
+                $razer_orders_id = $razer_orders_data['id'];
+    
+                if($razer_orders_id){
+                    $date = date("Y-m-d H:i:s");
+                    $ordersData = array(
+                        'customers_id' => $customers_id,
+                        'razer_orders_id' => $razer_orders_id,
+                        'order_creation_date' => $date
                     );
-                    $data['razerPay'] = $paymentsData;        
-                    $data['title'] = DONATE_NOW_STEP_2; 
-                    echo front_view('donation_step_2',$data);
-                }               
+                    $child_oreders_id = $this->Donation_m->create_order($ordersData);
+                    if($child_oreders_id){
+                        $paymentsData = array(
+                            'fullName' => $fullName,
+                            'emailAddress' => $emailAddress,
+                            'mobileNumber' => $mobileNumber,
+                            'amount' => $amount,
+                            'orders_id' => $razer_orders_id
+                        );
+                        $data['razerPay'] = $paymentsData;        
+                        $data['title'] = DONATE_NOW_STEP_2; 
+                        echo front_view('donation_step_2',$data);
+                    }               
+                }
             }
         }
-       
     }
 
     public function donation_success(){         
