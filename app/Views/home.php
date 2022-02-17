@@ -69,8 +69,11 @@
                                 $projectsImage = $project->projects_image;
                                 $targetAmount = number_format($project->target_amount,2,',',',');
                                 $receivedAmount = number_format($project->received_amount,2,',',',');
-                                $AmountstartDate = $project->amount_start_date;
-                                $amountEndDate = $project->amount_end_date;
+                                $AmountstartDate = strtotime($project->amount_start_date);
+                                $amountEndDate = strtotime($project->amount_end_date);                                
+                                $datediff = $amountEndDate - $AmountstartDate;
+
+                                $daysLeft =  round($datediff / (60 * 60 * 24));
                                 ?>
                                  <div class="col-md-12 mb-5 mb-md-0" style="background-color: #fff;border-radius:15px;padding-right: 0px;padding-left: 0px;">
                                     <article>
@@ -95,7 +98,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-5 offset-1 text-3 float-left mt-3">
-                                                    <i class="fas fa-clock" style="color:#000"></i> 82 Days left
+                                                    <i class="fas fa-clock" style="color:#000"></i> <?= $daysLeft ?> Days left
                                                 </div>
                                                 <div class="offset-5 col-xs-1 float-right text-3 mt-3">
                                                     <i class="fas fa-heart" style="color:#ea4335"></i> 2688
