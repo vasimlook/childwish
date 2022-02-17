@@ -1,3 +1,4 @@
+
 <div role="main" class="main">
     <div class="container-fluid position-relative" id="home">               
         <div class="row align-items-center pt-5">
@@ -58,115 +59,60 @@
         </div>
         <div class="row">                  
                 <div class="owl-carousel owl-theme stage-margin nav-style-1 " data-plugin-options="{'items': 3, 'margin': 50, 'loop': true, 'nav': false, 'dots': false, 'stagePadding': 30}">                        
-                    <div class="col-md-12 mb-5 mb-md-0" style="background-color: #fff;border-radius:15px;padding-right: 0px;padding-left: 0px;">
-                        <article>
-                            <a href="<?php echo base_url('singlepost'); ?>">
-                                <span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
-                                    <span class="thumb-info-wrapper">
-                                        <img src="<?php echo ASSETS_FOLDER; ?>img/projects/p1.jpeg" class="full-width" alt="" style="border-top-left-radius:10px;border-top-right-radius:10px">
-                                    </span>
-                                </span>
-                            </a>
-                            <div style="padding-right: 15px;padding-left: 15px;">
-                                <h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-post.html" class="text-color-dark text-decoration-none">Childwish Foundation EDUCATION Project</a></h2>
-                                <p class="mb-0">Every child deserves to be educated.</p>
-                                <p> Childwish Foundation has collaborated with local communities and organizations to share the gift of education with underprivileged kids.</p>
-                                <div class="progress-label">
-                                    <span class="text-4"><strong><i class="fas fa-rupee-sign"></i> 72,53,060</strong> raised out of <strong><i class="fas fa-rupee-sign"></i>90,00,000</strong> </span>
+
+                    <?php
+                         if(is_array($projects) && sizeof($projects) > 0){
+                            foreach($projects as $key => $project){            
+                                $projectId = $project->projects_id;
+                                $projectsTitle = $project->projects_title;
+                                $projectsDescription = $project->projects_description;
+                                $projectsImage = $project->projects_image;
+                                $targetAmount = number_format($project->target_amount,2,',',',');
+                                $receivedAmount = number_format($project->received_amount,2,',',',');
+                                $AmountstartDate = $project->amount_start_date;
+                                $amountEndDate = $project->amount_end_date;
+                                ?>
+                                 <div class="col-md-12 mb-5 mb-md-0" style="background-color: #fff;border-radius:15px;padding-right: 0px;padding-left: 0px;">
+                                    <article>
+                                        <a href="<?php echo base_url('singlepost'); ?>">
+                                            <span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
+                                                <span class="thumb-info-wrapper">
+                                                    <img src="<?php echo ASSETS_FOLDER; ?>img/projects/<?= $projectsImage ?>" class="full-width" alt="" style="border-top-left-radius:10px;border-top-right-radius:10px">
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div style="padding-right: 15px;padding-left: 15px;">
+                                            <h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-post.html" class="text-color-dark text-decoration-none"><?= $projectsTitle ?></a></h2>
+                                            <!-- <p class="mb-0">Every child deserves to be educated.</p> -->
+                                            <p><?= $projectsDescription ?></p>
+                                            <div class="progress-label">
+                                                <span class="text-4"><strong><i class="fas fa-rupee-sign"></i> <?= $receivedAmount ?></strong> raised out of <strong><i class="fas fa-rupee-sign"></i><?= $targetAmount ?></strong> </span>
+                                            </div>
+                                            <div class="progress progress-sm mb-2 mt-2">
+                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                    <span class="sr-only">60% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-5 offset-1 text-3 float-left mt-3">
+                                                    <i class="fas fa-clock" style="color:#000"></i> 82 Days left
+                                                </div>
+                                                <div class="offset-5 col-xs-1 float-right text-3 mt-3">
+                                                    <i class="fas fa-heart" style="color:#ea4335"></i> 2688
+                                                </div>
+                                            </div><br>
+                                            <div class="row">
+                                                
+                                                    <a href="#demo-form" class="col-md-12 btn btn-primary btn-outline popup-with-form font-weight-semibold text-4 btn-px-5 btn-py-2">Donate Now</a>
+                                            
+                                            </div>
+                                        </div>                                                     
+                                    </article>
                                 </div>
-                                <div class="progress progress-sm mb-2 mt-2">
-                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-5 offset-1 text-3 float-left mt-3">
-                                        <i class="fas fa-clock" style="color:#000"></i> 82 Days left
-                                    </div>
-                                    <div class="offset-5 col-xs-1 float-right text-3 mt-3">
-                                        <i class="fas fa-heart" style="color:#ea4335"></i> 2688
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    
-                                        <a href="#demo-form" class="col-md-12 btn btn-primary btn-outline popup-with-form font-weight-semibold text-4 btn-px-5 btn-py-2">Donate Now</a>
-                                   
-                                </div>
-                            </div>                                                     
-                        </article>
-                    </div>      
-                     <div class="col-md-12 mb-5 mb-md-0" style="background-color: #fff;border-radius:15px;padding-right: 0px;padding-left: 0px;">
-                        <article>
-                            <a href="<?php echo base_url('singlepost'); ?>">
-                                <span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
-                                    <span class="thumb-info-wrapper">
-                                        <img src="<?php echo ASSETS_FOLDER; ?>img/projects/p1.jpeg" class="full-width" alt="" style="border-top-left-radius:10px;border-top-right-radius:10px">
-                                    </span>
-                                </span>
-                            </a>
-                            <div style="padding-right: 15px;padding-left: 15px;">
-                                <h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-post.html" class="text-color-dark text-decoration-none">Childwish Foundation EDUCATION Project</a></h2>
-                                <p class="mb-0">Every child deserves to be educated.</p>
-                                <p> Childwish Foundation has collaborated with local communities and organizations to share the gift of education with underprivileged kids.</p>
-                                <div class="progress-label">
-                                    <span class="text-4"><strong><i class="fas fa-rupee-sign"></i> 72,53,060</strong> raised out of <strong><i class="fas fa-rupee-sign"></i>90,00,000</strong> </span>
-                                </div>
-                                <div class="progress progress-sm mb-2 mt-2">
-                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-5 offset-1 text-3 float-left mt-3">
-                                        <i class="fas fa-clock" style="color:#000"></i> 82 Days left
-                                    </div>
-                                    <div class="offset-5 col-xs-1 float-right text-3 mt-3">
-                                        <i class="fas fa-heart" style="color:#ea4335"></i> 2688
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    
-                                        <a href="#demo-form" class="col-md-12 btn btn-primary btn-outline popup-with-form font-weight-semibold text-4 btn-px-5 btn-py-2">Donate Now</a>
-                                   
-                                </div>
-                            </div>                                                     
-                        </article>
-                    </div>      
-                     <div class="col-md-12 mb-5 mb-md-0" style="background-color: #fff;border-radius:15px;padding-right: 0px;padding-left: 0px;">
-                        <article>
-                            <a href="<?php echo base_url('singlepost'); ?>">
-                                <span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
-                                    <span class="thumb-info-wrapper">
-                                        <img src="<?php echo ASSETS_FOLDER; ?>img/projects/p1.jpeg" class="full-width" alt="" style="border-top-left-radius:10px;border-top-right-radius:10px">
-                                    </span>
-                                </span>
-                            </a>
-                            <div style="padding-right: 15px;padding-left: 15px;">
-                                <h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-post.html" class="text-color-dark text-decoration-none">Childwish Foundation EDUCATION Project</a></h2>
-                                <p class="mb-0">Every child deserves to be educated.</p>
-                                <p> Childwish Foundation has collaborated with local communities and organizations to share the gift of education with underprivileged kids.</p>
-                                <div class="progress-label">
-                                    <span class="text-4"><strong><i class="fas fa-rupee-sign"></i> 72,53,060</strong> raised out of <strong><i class="fas fa-rupee-sign"></i>90,00,000</strong> </span>
-                                </div>
-                                <div class="progress progress-sm mb-2 mt-2">
-                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-5 offset-1 text-3 float-left mt-3">
-                                        <i class="fas fa-clock" style="color:#000"></i> 82 Days left
-                                    </div>
-                                    <div class="offset-5 col-xs-1 float-right text-3 mt-3">
-                                        <i class="fas fa-heart" style="color:#ea4335"></i> 2688
-                                    </div>
-                                </div><br>
-                                <div class="row">                                    
-                                        <a href="#demo-form" class="col-md-12 btn btn-primary btn-outline popup-with-form font-weight-semibold text-4 btn-px-5 btn-py-2">Donate Now</a>                                   
-                                </div>
-                            </div>                                                     
-                        </article>
-                    </div>      
+                           <?php }
+                        }
+                    ?>                        
+                          
                 </div>            
         </div>       
     </div>

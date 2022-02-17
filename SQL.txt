@@ -49,11 +49,11 @@ CREATE TABLE `child_wish_customers` (
 ====================================================================================
 
 ====================================================================================
-CREATE TABLE `donation_projetcts` (
+CREATE TABLE `donation_projects` (
   `projects_id` int(11) NOT NULL AUTO_INCREMENT,
-  `projetcs_title` varchar(100) DEFAULT NULL,
-  `projetcts_description` text DEFAULT NULL,
-  `projetct_image` varchar(100) DEFAULT NULL,
+  `projects_title` varchar(100) DEFAULT NULL,
+  `projects_description` text DEFAULT NULL,
+  `projects_image` varchar(100) DEFAULT NULL,
   `target_amount` float(15,4) NOT NULL DEFAULT 0.0000,
   `received_amount` float(15,4) NOT NULL DEFAULT 0.0000,
   `amount_start_date` datetime NOT NULL,
