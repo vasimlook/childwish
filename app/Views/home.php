@@ -67,11 +67,16 @@
                                 $projectsTitle = $project->projects_title;
                                 $projectsDescription = $project->projects_description;
                                 $projectsImage = $project->projects_image;
-                                $targetAmount = number_format($project->target_amount,2,',',',');
-                                $receivedAmount = number_format($project->received_amount,2,',',',');
+                                $targetAmount = number_format($project->target_amount,2,'.','');
+                                $receivedAmount = number_format($project->received_amount,2,'.','');
                                 $AmountstartDate = strtotime($project->amount_start_date);
                                 $amountEndDate = strtotime($project->amount_end_date);                                
                                 $datediff = $amountEndDate - $AmountstartDate;
+
+                                $totalPercent = 0;                                
+                                if(floatval($project->received_amount) > 0){
+                                   $totalPercent = ((float)$receivedAmount * 100) / (float)$project->target_amount;
+                                }
 
                                 $daysLeft =  round($datediff / (60 * 60 * 24));
                                 ?>
@@ -92,7 +97,7 @@
                                                 <span class="text-4"><strong><i class="fas fa-rupee-sign"></i> <?= $receivedAmount ?></strong> raised out of <strong><i class="fas fa-rupee-sign"></i><?= $targetAmount ?></strong> </span>
                                             </div>
                                             <div class="progress progress-sm mb-2 mt-2">
-                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $totalPercent ?>%;">
                                                     <span class="sr-only">60% Complete</span>
                                                 </div>
                                             </div>
