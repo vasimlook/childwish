@@ -52,6 +52,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col">
+                                        <input type="hidden" value = "<?= $projects_id ?>" name="projects_id" >
                                         <input type="submit" value="Donate Now" class="btn btn-primary btn-modern" data-loading-text="Loading...">
                                     </div>
                                 </div>

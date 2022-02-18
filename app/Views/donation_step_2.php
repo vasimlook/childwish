@@ -49,6 +49,7 @@
                                     data-theme.color="#F37254"                                    
                                 ></script>
                             <input type="hidden" custom="Hidden Element" name="hidden">
+                            <input type="hidden" custom="Hidden Element" name="projects_id" value = "<?= $projects_id ?>">
                         <?php echo form_close(); ?>
                         </div>
                         <div class="col-lg-6">

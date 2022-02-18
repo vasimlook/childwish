@@ -24,6 +24,7 @@ class Donation extends BaseController
     {
         
         helper('form');
+        $data['projects_id'] = $projectId;
         $data['title'] = DONATE_NOW; 
         echo front_view('donation',$data);
     }
@@ -35,6 +36,7 @@ class Donation extends BaseController
         $mobileNumber = (isset($_REQUEST['mobile'])) ? trim($_REQUEST['mobile']) : "";
         $amount = (isset($_REQUEST['amount'])) ? trim($_REQUEST['amount']) : "10";
         $date = date("Y-m-d H:i:s");
+        $projectsId = (int)$_REQUEST['projects_id'];
 
         if($fullName !== "" && $emailAddress !== "" && $mobileNumber !== "" && $amount !== ""){
             $customersData = array(
@@ -93,6 +95,7 @@ class Donation extends BaseController
                             'orders_id' => $razer_orders_id
                         );
                         $data['razerPay'] = $paymentsData;        
+                        $data['projects_id'] = $projectsId;        
                         $data['title'] = DONATE_NOW_STEP_2; 
                         echo front_view('donation_step_2',$data);
                     }               
@@ -101,11 +104,12 @@ class Donation extends BaseController
         }
     }
 
-    public function donation_success(){         
+    public function donation_success(){
 
         if(isset($_REQUEST['razorpay_payment_id']) && $_REQUEST['razorpay_payment_id'] != ''){
             $api = new Api(RAZERPAY_KEY,RAZERPAY_KEY_SECRET);
             $res = $api->payment->fetch($_REQUEST['razorpay_payment_id']);
+            $projects_id = (int)$_REQUEST['projects_id'];            
     
             $res = (array) $res;
             $prefix = chr(0).'*'.chr(0);
@@ -117,12 +121,13 @@ class Donation extends BaseController
                 (isset($razer_payments_data['captured']) && ($razer_payments_data['captured'] == 1 || $razer_payments_data['captured'] == '1' ))
             ){
                 $rp = $razer_payments_data;
+                $donate_amount = (float)($rp['amount']/100);
                 $orders_id = $razer_payments_data['order_id'];
                 $paymentDate = date("Y-m-d H:i:s");
                 $payments = array(
                     'razer_payment_id' => $rp['id'],
                     'currency' => $rp['currency'],
-                    'amount' => $rp['amount']/100,
+                    'amount' => $donate_amount,
                     'status' => $rp['status'],
                     'captured' =>  $rp['captured'],
                     'card_id' =>  $rp['card_id'],
@@ -137,8 +142,14 @@ class Donation extends BaseController
                     'tax' => $rp['tax'],
                     'entity' => $rp['entity'],
                     'payement_date' => $paymentDate,
+                    'projects_id' => $projects_id
                 );
-    
+
+               
+                if($projects_id > 0){                    
+                    $this->Donation_m->update_projects_donation($projects_id,$donate_amount);
+                }
+                
                 $update_payments = $this->Donation_m->update_donation($orders_id,$payments);
                 $data['title'] = DONATE_SUCCESS; 
                 echo front_view('donation_success',$data);
