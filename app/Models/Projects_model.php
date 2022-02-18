@@ -17,10 +17,11 @@ class Projects_model extends Model {
 
     public function get_projects(){
 
-        $project = $this->db->table('donation_projects');       
-        $project->where('projects_status','1');
-        $query =  $project->get();
-        $projects = $query->getResult();       
+        $project = $this->db->query("SELECT *
+                                    FROM   donation_projects
+                                    WHERE  Date(amount_end_date) >= Date(Now())
+                                        AND projects_status = 1 ");
+        $projects = $project->getResult();         
         return $projects;
         
     }   
