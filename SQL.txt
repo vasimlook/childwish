@@ -26,8 +26,9 @@ CREATE TABLE `child_wish_donation` (
   `entity` varchar(50) DEFAULT NULL,
   `payement_date` datetime NOT NULL,
   `order_creation_date` datetime NOT NULL,
+  `projects_id` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`donation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4
 
 =====================================================================================
 
