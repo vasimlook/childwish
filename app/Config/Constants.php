@@ -101,7 +101,8 @@ define('ACKNOWLEDGEMENT','Acknowlwdgement');
 define('HOWCANYOUHELP','How can you help');
 
 
-define('DONATION_LINK',BASE_URL.'/donation');
+define('DONATION_LINK',BASE_URL.'/donation/0');
+define('PROJECT_DONATION_LINK',BASE_URL.'/donation');
 define('DONATION_STEP_2_LINK',BASE_URL.'/donation/step_2');
 define('DONATION_SUCCESS',BASE_URL.'/donation/success');
 

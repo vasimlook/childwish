@@ -20,9 +20,9 @@ class Donation extends BaseController
         $this->security = \Config\Services::security();          
                          
     }
-    public function donation()
+    public function donation($projectId)
     {
-    
+        
         helper('form');
         $data['title'] = DONATE_NOW; 
         echo front_view('donation',$data);

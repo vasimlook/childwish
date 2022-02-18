@@ -111,7 +111,7 @@
                                             </div><br>
                                             <div class="row">
                                                 
-                                                    <a href="#demo-form" class="col-md-12 btn btn-primary btn-outline popup-with-form font-weight-semibold text-4 btn-px-5 btn-py-2">Donate Now</a>
+                                                    <a href="<?= PROJECT_DONATION_LINK.'/'.$projectId   ?>"  class="col-md-12 btn btn-primary btn-outline  font-weight-semibold text-4 btn-px-5 btn-py-2">Donate Now</a>
                                             
                                             </div>
                                         </div>                                                     
