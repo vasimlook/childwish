@@ -24,6 +24,12 @@ class Projects_model extends Model {
         return $projects;
         
     }   
+
+    public function update_projects_donation($projects_id , $receivedAmount){        
+        $result = $this->db->query("UPDATE donation_projects SET received_amount = received_amount + {$receivedAmount} WHERE projects_id  = {$projects_id} ");                                               
+        return $result;
+    }
+   
    
    
 }

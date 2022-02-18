@@ -4,12 +4,14 @@ use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError; 
 use App\Models\Donation_model;
 use App\Models\Customers_model;
+use App\Models\Projects_model;
 class Donation extends BaseController
 {
     private $security;     
     protected $session;
     private $Customers_m;
     private $Donation_m;
+    private $Projects_m;
     public function __construct() {                
         $this->session = \Config\Services::session();
         $this->session->start(); 
@@ -17,6 +19,7 @@ class Donation extends BaseController
         helper('functions');
         $this->Customers_m = new Customers_model(); 
         $this->Donation_m = new Donation_model(); 
+        $this->Projects_m = new Projects_model(); 
         $this->security = \Config\Services::security();          
                          
     }
@@ -147,7 +150,7 @@ class Donation extends BaseController
 
                
                 if($projects_id > 0){                    
-                    $this->Donation_m->update_projects_donation($projects_id,$donate_amount);
+                    $this->Projects_m->update_projects_donation($projects_id,$donate_amount);
                 }
                 
                 $update_payments = $this->Donation_m->update_donation($orders_id,$payments);

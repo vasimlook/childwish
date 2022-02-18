@@ -25,11 +25,5 @@ class Donation_model extends Model {
         $builder = $this->db->table('child_wish_donation');
         $builder->where('razer_orders_id', $razer_orders_id);        
         return $builder->update($donationData);
-    }
-
-    public function update_projects_donation($projects_id , $receivedAmount){        
-        $result = $this->db->query("UPDATE donation_projects SET received_amount = received_amount + {$receivedAmount} WHERE projects_id  = {$projects_id} ");                                               
-        return $result;
-    }
-   
+    }   
 }
