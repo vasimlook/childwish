@@ -21,7 +21,7 @@ class Projects_model extends Model {
                                     FROM   donation_projects
                                     WHERE  Date(amount_end_date) >= Date(Now())
                                         AND projects_status = 1 ");
-        $projects = $project->getResult();         
+        $projects = $project->getResultArray();      
         return $projects;
         
     }   

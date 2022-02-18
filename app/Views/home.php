@@ -63,19 +63,19 @@
                     <?php
                          if(is_array($projects) && sizeof($projects) > 0){
                             foreach($projects as $key => $project){            
-                                $projectId = $project->projects_id;
-                                $projectsTitle = $project->projects_title;
-                                $projectsDescription = $project->projects_description;
-                                $projectsImage = $project->projects_image;
-                                $targetAmount = number_format($project->target_amount,2,'.','');
-                                $receivedAmount = number_format($project->received_amount,2,'.','');
-                                $AmountstartDate = strtotime($project->amount_start_date);
-                                $amountEndDate = strtotime($project->amount_end_date);                                
+                                $projectId = $project['projects_id'];
+                                $projectsTitle = $project['projects_title'];
+                                $projectsDescription = $project['projects_description'];
+                                $projectsImage = $project['projects_image'];
+                                $targetAmount = number_format($project['target_amount'],2,'.','');
+                                $receivedAmount = number_format($project['received_amount'],2,'.','');
+                                $AmountstartDate = strtotime($project['amount_start_date']);
+                                $amountEndDate = strtotime($project['amount_end_date']);                                
                                 $datediff = $amountEndDate - $AmountstartDate;
 
                                 $totalPercent = 0;                                
-                                if(floatval($project->received_amount) > 0){
-                                   $totalPercent = ((float)$receivedAmount * 100) / (float)$project->target_amount;
+                                if(floatval($project['received_amount']) > 0){
+                                   $totalPercent = ((float)$receivedAmount * 100) / (float)$project['target_amount'];
                                    $totalPercent = ceil($totalPercent);
                                 }
 
