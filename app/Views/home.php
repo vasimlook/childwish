@@ -76,6 +76,7 @@
                                 $totalPercent = 0;                                
                                 if(floatval($project->received_amount) > 0){
                                    $totalPercent = ((float)$receivedAmount * 100) / (float)$project->target_amount;
+                                   $totalPercent = ceil($totalPercent);
                                 }
 
                                 $daysLeft =  round($datediff / (60 * 60 * 24));
