@@ -107,14 +107,14 @@ CREATE TABLE `donation_projects_medical_documents` (
 ===================================================================================================
 
 ===================================================================================================
-
 CREATE TABLE `donor_testimonials` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` text DEFAULT NULL,
   `author` varchar(20) DEFAULT NULL,
+  `author_image` varchar(50) DEFAULT NULL,
   `author_address` varchar(100) DEFAULT NULL,
   `is_active` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4
 
 ===================================================================================================
