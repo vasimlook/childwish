@@ -1,6 +1,6 @@
 <?php namespace App\Controllers;
 use App\Models\Projects_model;
-class Singlepost extends BaseController
+class Projects extends BaseController
 {
     private $security;     
     protected $session;
@@ -18,7 +18,7 @@ class Singlepost extends BaseController
         $projects_details =  $this->Projects_m->get_projects_details($projectsId);
         $data['projects_details'] = $projects_details;
         $data['title'] = ABOUT_PROJECT;
-        echo front_view('singlepost',$data);
+        echo front_view('projects_details',$data);
     }
     public function page404() {        
         $data['title'] = 'error';        
