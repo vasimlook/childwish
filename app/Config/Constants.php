@@ -84,6 +84,7 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 //**************************************TITLE****************************//
 define('HOME', 'HOME');
 define('ABOUT_US', 'About us');
+define('ABOUT_PROJECT', 'About project');
 define('DONATE_NOW', 'Donate now');
 define('DONATE_NOW_STEP_2', 'Donate now');
 define('DONATE_SUCCESS', 'Donate success');
@@ -105,6 +106,13 @@ define('DONATION_LINK',BASE_URL.'/donation/0');
 define('PROJECT_DONATION_LINK',BASE_URL.'/donation');
 define('DONATION_STEP_2_LINK',BASE_URL.'/donation_step_2');
 define('DONATION_SUCCESS',BASE_URL.'/donation_success');
+
+
+define('PROJECTS_DETAILS',BASE_URL.'/projects_details');
+
+
+
+
 
 
 //*******************************RAZERPAY CREDENTIAL************************************* */

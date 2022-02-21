@@ -83,7 +83,7 @@
                                 ?>
                                  <div class="col-md-12 mb-5 mb-md-0" style="background-color: #fff;border-radius:15px;padding-right: 0px;padding-left: 0px;">
                                     <article>
-                                        <a href="<?php echo base_url('singlepost'); ?>">
+                                        <a href="<?= PROJECTS_DETAILS.'/'.$projectId  ?>">
                                             <span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
                                                 <span class="thumb-info-wrapper">
                                                     <img src="<?php echo ASSETS_FOLDER; ?>img/projects/<?= $projectsImage ?>" class="full-width" alt="" style="border-top-left-radius:10px;border-top-right-radius:10px">

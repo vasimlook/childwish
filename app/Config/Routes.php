@@ -41,6 +41,7 @@ $routes->add('errorpage', 'Home_c::page404');
 $routes->add('donation/(:any)', 'Donation::donation/$1');
 $routes->add('donation_step_2', 'Donation::donation_step_2');
 $routes->add('donation_success', 'Donation::donation_success');
+$routes->add('projects_details/(:any)', 'Singlepost::details/$1');
 
 
 /* END DONATION ROUTES */

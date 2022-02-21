@@ -1,18 +1,23 @@
 <?php namespace App\Controllers;
+use App\Models\Projects_model;
 class Singlepost extends BaseController
 {
     private $security;     
     protected $session;
+    private $Projects_m;
     public function __construct() {   
         $this->session = \Config\Services::session();
         $this->session->start(); 
         helper('url');
         helper('functions');
+        $this->Projects_m = new Projects_model();
         $this->security = \Config\Services::security();                        
     }
-    public function index()
+    public function details($projectsId)
     {
-        $data['title'] = ABOUT_US; 
+        $projects_details =  $this->Projects_m->get_projects_details($projectsId);
+        $data['projects_details'] = $projects_details;
+        $data['title'] = ABOUT_PROJECT;
         echo front_view('singlepost',$data);
     }
     public function page404() {        
