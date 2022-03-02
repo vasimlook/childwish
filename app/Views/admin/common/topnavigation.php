@@ -9,7 +9,7 @@
                 </div>
                 <div class="nk-header-brand d-xl-none">
                     <a href="#" class="logo-link">
-                        <h5>Aaradhya Traders</h5>
+                        <h5>Child Wish</h5>
                     </a>
                 </div>
                 <!-- .nk-header-brand -->
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="dropdown-inner">
                                     <ul class="link-list">
-                                        <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                        <li><a href="<?= ADMIN_LOGOUT_LINK ?>"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                     </ul>
                                 </div>
                             </div>
