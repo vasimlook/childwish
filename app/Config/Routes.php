@@ -48,6 +48,8 @@ $routes->add('projects_details/(:any)', 'Projects::details/$1');
 
 
 /* START ADMINS ROUTES */
+$routes->add('admin-login', 'Admin_login_c::index');
+$routes->add('admin-logout', 'Admin_login_c::logout');
 $routes->add('admin-dashboard', 'Admin_c::admin_dashboard');
 /* END ADMINS ROUTES */
 

@@ -25,7 +25,7 @@
                         <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
                             <div class="brand-logo pb-4 text-center">
                                 <a href="<?php echo BASE_URL; ?>" class="logo-link">
-                                   <h5>Apna Bazaar</h5>
+                                   <h5>Child Wish Admin</h5>
                                 </a>
                             </div>
                             <div class="card">
@@ -37,11 +37,12 @@
                                                 <p>Enter username and password for access</p>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <?php                        
-                                        echo form_open(EMPLOYEE_LOGIN_LINK); 
-                                    ?>                                                                        
+                                    </div>                                    
+                                                
+                                    <?php
+                                    $attributes = ['class' => 'login-form', 'method' => 'POST', 'name' => 'login_form'];
+                                    echo form_open(ADMIN_LOGIN_LINK, $attributes);
+                                ?>                                                          
                                         <div class="form-group">
                                             <div class="form-label-group">
                                                 <label class="form-label" for="default-01">Email or Username</label>
@@ -61,8 +62,8 @@
                                                 <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Enter your password" autocomplete="off" required="" autocomplete="off"> 
                                             </div>
                                         </div>                                                                                                                                                                                          
-                                        <div class="form-group">
-                                            <button class="btn btn-lg btn-primary btn-block"  id="btnSubmit" >Sign in</button>
+                                        <div class="form-group">                                            
+                                            <input type="submit" value="Sign in" class="btn btn-lg btn-primary btn-block">
                                         </div>
                                       <?php echo form_close();?>        
                                 </div>

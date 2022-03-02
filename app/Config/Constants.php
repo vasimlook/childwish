@@ -101,6 +101,10 @@ define('BLOG','Blogs');
 define('ACKNOWLEDGEMENT','Acknowlwdgement');
 define('HOWCANYOUHELP','How can you help');
 
+define('ADMIN_LOGIN_TITLE', 'CHILD-WISH-LOGIN');
+define('ADMIN_DASHBOARD', 'Admin dashboard');
+
+
 
 define('DONATION_LINK',BASE_URL.'/donation/0');
 define('PROJECT_DONATION_LINK',BASE_URL.'/donation');
@@ -108,10 +112,17 @@ define('DONATION_STEP_2_LINK',BASE_URL.'/donation_step_2');
 define('DONATION_SUCCESS',BASE_URL.'/donation_success');
 
 
-define('ADMIN_DASHBOARD', 'Admin dashboard');
+
+
 
 
 define('PROJECTS_DETAILS',BASE_URL.'/projects_details');
+
+
+define('ADMIN_LOGIN_LINK', BASE_URL_CI.'/admin-login');
+define('ADMIN_LOGOUT_LINK', BASE_URL_CI.'/admin-logout');
+define('ADMIN_DASHBOARD_LINK', BASE_URL_CI.'/admin-dashboard');
+
 
 
 
