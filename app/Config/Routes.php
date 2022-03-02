@@ -45,6 +45,12 @@ $routes->add('projects_details/(:any)', 'Projects::details/$1');
 
 
 /* END DONATION ROUTES */
+
+
+/* START ADMINS ROUTES */
+$routes->add('admin-dashboard', 'Admin_c::admin_dashboard');
+/* END ADMINS ROUTES */
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

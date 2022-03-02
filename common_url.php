@@ -19,4 +19,6 @@ define('IMG_DIR','uploads/');
 define('FILE_DIR', "/uploads/doc/");
 define('ASSETS_FOLDER', BASE_URL.'/assets/');
 define('CENTRAL_ASSETS_FOLDER', BASE_URL.'/assets/central/');
+define('ADMIN_MAIN_ASSETS_FOLDER', BASE_URL.'/assets/admin/');
+define('EMPLOYEE_ASSETS_FOLDER', BASE_URL.'/assets/employee/');
 ?>

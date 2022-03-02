@@ -108,6 +108,9 @@ define('DONATION_STEP_2_LINK',BASE_URL.'/donation_step_2');
 define('DONATION_SUCCESS',BASE_URL.'/donation_success');
 
 
+define('ADMIN_DASHBOARD', 'Admin dashboard');
+
+
 define('PROJECTS_DETAILS',BASE_URL.'/projects_details');
 
 
