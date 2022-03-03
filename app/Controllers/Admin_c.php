@@ -36,6 +36,27 @@ class Admin_c extends BaseController{
         $data['title'] = ADMIN_DASHBOARD; 
         echo admin_view('admin/dashboard',$data);
     }
+
+    public function update_profile(){         
+        $result=array();               
+        if(isset($_POST['user_current_password']) && $_POST['user_current_password']!=''){            
+            if($this->Login_m->check_current_password($_POST['user_current_password'])){                
+                $res = $this->Login_m->update_password($_POST);                    
+                if($res){
+                    successOrErrorMessage("Password changed successfully", 'success');
+                    $result['success']="success";                   
+                }                
+            }
+            else{
+                $result['success']="fail";
+            }
+            echo json_encode($result);die;            
+        } 
+        helper('form');
+        $data['title']=ADMIN_UPDATE_PROFILE_TITLE;        
+        echo admin_view('admin/update_profile',$data);
+    } 
+
     public function page404() {        
         $data['title'] = 'error';        
         echo single_page('errors/html/custome_error_404',$data);

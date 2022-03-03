@@ -87,7 +87,7 @@ class Login_m extends Model
         $check = $this->db->query("SELECT * FROM admin
                                        WHERE admin_user_id = '" . $admin_user_id . "'
                                        AND user_email_password ='" . $current_password . "'");
-        $row = $check->getRowArray();
+        $row = $check->getRowArray();        
         if (isset($row)) {
             if ($current_password == $row['user_email_password']) {
                 return true; //matched

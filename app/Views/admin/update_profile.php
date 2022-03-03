@@ -14,7 +14,7 @@
                         <div class="card-inner">
                              <?php
                                 $attributes = ['id' => 'frm_change_password','class'=>'gy-3'];
-                                echo form_open(EMPLOYEE_UPDATE_PROFILE_LINK,$attributes);
+                                echo form_open(ADMIN_UPDATE_PROFILE_LINK,$attributes);
                                ?>                            
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-4">
