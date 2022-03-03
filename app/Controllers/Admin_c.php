@@ -48,9 +48,9 @@ class Admin_c extends BaseController{
                 }                
             }
             else{
+                successOrErrorMessage("Current password does not match", 'error');
                 $result['success']="fail";
-            }
-            echo json_encode($result);die;            
+            }                    
         } 
         helper('form');
         $data['title']=ADMIN_UPDATE_PROFILE_TITLE;        

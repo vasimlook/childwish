@@ -83,7 +83,7 @@ class Login_m extends Model
     
     public function check_current_password($current_password) {
         $current_password = md5($current_password);
-        $admin_user_id = $_SESSION['admin_user_id'];
+        $admin_user_id = $_SESSION['admin']['admin_user_id'];        
         $check = $this->db->query("SELECT * FROM admin
                                        WHERE admin_user_id = '" . $admin_user_id . "'
                                        AND user_email_password ='" . $current_password . "'");
