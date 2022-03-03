@@ -12,11 +12,8 @@ class Admin_c extends BaseController{
         helper('functions');
         $this->security = \Config\Services::security();                        
     }
-    public function admin_dashboard()
-    {
-        ini_set('display_startup_errors', 1);
-ini_set('display_errors', 1);
-error_reporting(-1);
+    public function admin_dashboard(){
+      
         $data['title'] = ADMIN_DASHBOARD; 
         echo admin_view('admin/dashboard',$data);
     }
