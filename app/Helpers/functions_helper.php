@@ -150,13 +150,13 @@ function sessionAdmin($row) {
     return $session_data;
 }
 function sessionCheckAdmin() {
-    if ((!isset($_SESSION['admin']['admin_id'])) || !isset($_SESSION['admin']['admin_usertype'])) {    
-        header('Location: ' . MASTER_ADMIN_LOGIN_LINK);
+    if ((!isset($_SESSION['admin']['admin_user_id'])) || !isset($_SESSION['admin']['admin_usertype'])) {    
+        header('Location: ' . ADMIN_LOGIN_LINK);
         exit();
     }
     if (isset($_SESSION['admin']['admin_usertype'])) {
         if ($_SESSION['admin']['admin_usertype'] != 'admin') {            
-            header('Location: ' . MASTER_ADMIN_LOGIN_LINK);
+            header('Location: ' . ADMIN_LOGIN_LINK);
             exit();
         }
     }
