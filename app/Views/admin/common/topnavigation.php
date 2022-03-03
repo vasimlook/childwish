@@ -29,9 +29,15 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                                 <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+
+                                    <?php
+                                      $firstWord = (isset($_SESSION['admin']['user_firstname'])) ? substr($_SESSION['admin']['user_firstname'], 0, 1) : 'C';
+                                      $LastWord = (isset($_SESSION['admin']['user_lastname'])) ? substr($_SESSION['admin']['user_lastname'], 0, 1) : 'W';
+                                      $shortName = strtoupper($firstWord.$LastWord);
+                                    ?>
                                     <div class="user-card">
                                         <div class="user-avatar">
-                                            <span>AB</span>
+                                            <span><?= $shortName ?></span>
                                         </div>
                                         <div class="user-info">
                                             <span class="lead-text"><?php echo $_SESSION['admin']['user_firstname'].' '.$_SESSION['admin']['user_lastname']; ?></span>
