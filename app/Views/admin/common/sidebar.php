@@ -23,7 +23,7 @@
                         <div class="nk-sidebar-menu" data-simplebar>
                             <ul class="nk-menu">
                                 <li class="nk-menu-heading">
-                                    <h6 class="overline-title text-primary-alt">Employee Panel</h6>
+                                    <h6 class="overline-title text-primary-alt">Admin Panel</h6>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="#" class="nk-menu-link">
@@ -36,21 +36,15 @@
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                                        <span class="nk-menu-text">Customer Manage</span>
+                                        <span class="nk-menu-text">Project Manage</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="#" class="nk-menu-link"><span class="nk-menu-text">Customers List</span></a>
-                                            <a href="#" class="nk-menu-link"><span class="nk-menu-text">Add Customers</span></a>
+                                            <a href="#" class="nk-menu-link"><span class="nk-menu-text">Projects List</span></a>
+                                            <a href="#" class="nk-menu-link"><span class="nk-menu-text">Add Project</span></a>
                                         </li>                                       
                                     </ul>                                     
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="#" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-money"></em></span>
-                                        <span class="nk-menu-text">Withdrawal Request</span>
-                                    </a>
-                                </li>
+                                </li>                               
                                 <!-- .nk-menu-item -->
                             </ul><!-- .nk-menu -->
                         </div><!-- .nk-sidebar-menu -->
