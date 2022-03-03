@@ -52,7 +52,7 @@
                                         <div class="form-group">
                                             <div class="form-label-group">
                                                 <label class="form-label" for="password">Password</label>
-                                                <a class="link link-primary link-sm" href="#">Forgot Code?</a>
+                                                <!-- <a class="link link-primary link-sm" href="#">Forgot Code?</a> -->
                                             </div>
                                             <div class="form-control-wrap">
                                                 <a href="#" class="form-icon form-icon-right passcode-switch" data-target="password">
