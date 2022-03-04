@@ -1261,9 +1261,7 @@ function front_view($page, $data = array()) {
 }
 
 function admin_view($page, $data = array()) {
-    if (!is_file(APPPATH . "/Views/$page" . '.php')) {
-
-		echo 111;
+    if (!is_file(APPPATH . "/Views/$page" . '.php')) {		
         // Whoops, we don't have a page for that!
         throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
     }
