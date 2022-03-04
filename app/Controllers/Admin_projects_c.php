@@ -98,9 +98,7 @@ class Admin_projects_c extends BaseController{
                if($projectsId){
                 successOrErrorMessage("Projects has been successfully created", 'success');
                }
-           }else if(is_array($error_messages) && sizeof($error_messages) > 0){
-               $error_messages [] = 'Error while creating a projects';
-               $error_messages [] = 'Please check below fields';               
+           }else if(is_array($error_messages) && sizeof($error_messages) > 0){                           
                $errors = implode('<br>',$error_messages);
                successOrErrorMessage($errors, 'error');               
            }

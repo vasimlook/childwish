@@ -1,3 +1,26 @@
+<?php
+    $projects_title = "";
+    $projects_description = "";
+    $target_amount  = "";
+    $amount_start_date = "";
+    $amount_end_date = "";
+    $urgent_need = "";
+
+    if(isset($projects_details) && (is_array($projects_details) && sizeof($projects_details) > 0)){
+        $projects_title = (isset($projects_details['projects_title'])) ? $projects_details['projects_title'] : '';
+        $projects_description = (isset($projects_details['projects_description'])) ? $projects_details['projects_description'] : '';
+        $target_amount = (isset($projects_details['target_amount'])) ? $projects_details['target_amount'] : '';
+        $amount_start_date = (isset($projects_details['amount_start_date'])) ? $projects_details['amount_start_date'] : '';
+        $amount_end_date = (isset($projects_details['amount_end_date'])) ? $projects_details['amount_end_date'] : '';
+
+        if(isset($projects_details['urgent_need'])){
+            if($projects_details['urgent_need'] == 1){
+                $urgent_need = "checked";
+            }
+        }
+    }
+?>
+
 <div class="nk-content">
     <div class="container-fluid">
         <div class="nk-content-inner">
@@ -25,7 +48,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control" name="projects_title" id="projects_title" placeholder="Enter projects title" required="" autocomplete="off">
+                                                <input type="text" value = "<?= $projects_title ?>" class="form-control" name="projects_title" id="projects_title" placeholder="Enter projects title" required="" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +62,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <textarea class="form-control" name="projects_description" id="projects_description" required></textarea>
+                                                <textarea class="form-control" name="projects_description" id="projects_description" required> <?= $projects_description ?></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +90,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="text" class="form-control"  name="target_amount" id="target_amount" placeholder="Enter target amount" required="" autocomplete="off">
+                                                 <input type="text" class="form-control" value = "<?=$target_amount ?>"   name="target_amount" id="target_amount" placeholder="Enter target amount" required="" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +104,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="text" class="form-control"  name="amount_start_date" id="amount_start_date" placeholder="Enter start date" required="" autocomplete="off">
+                                                 <input type="text" class="form-control" value = "<?= $amount_start_date ?>"  name="amount_start_date" id="amount_start_date" placeholder="Enter start date" required="" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -95,7 +118,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="text" class="form-control"  name="amount_end_date" id="amount_end_date" placeholder="Enter end date" required="" autocomplete="off">
+                                                 <input type="text" class="form-control" value = "<?= $amount_end_date ?>"  name="amount_end_date" id="amount_end_date" placeholder="Enter end date" required="" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +132,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="checkbox"  name="urgent_need" id="urgent_need" >
+                                                 <input type="checkbox" <?= $urgent_need ?>  name="urgent_need" id="urgent_need" >
                                             </div>
                                         </div>
                                     </div>
