@@ -45,7 +45,7 @@ class Admin_projects_c extends BaseController{
            isset($_POST['projects_description'])){
                $projects_title = trim($_POST['projects_title']);
                $projects_description = trim($_POST['projects_description']);
-               $target_amount = trim($_POST['target_amount']);
+               $target_amount = (float)trim($_POST['target_amount']);
                $amount_start_date = trim($_POST['amount_start_date']);
                $amount_end_date = trim($_POST['amount_end_date']);
 
@@ -64,7 +64,7 @@ class Admin_projects_c extends BaseController{
                }
 
 
-              if(empty($target_amount) || $target_amount == ''){
+              if(empty($target_amount) || $target_amount == '' || $target_amount <= 0){
                 $has_error = true;
                 $error_messages[] = "Target amount can not be empty!";
               }else{
