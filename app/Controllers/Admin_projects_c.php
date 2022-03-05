@@ -110,6 +110,7 @@ class Admin_projects_c extends BaseController{
 
                if($projectsId){
                 successOrErrorMessage("Projects has been successfully created", 'success');
+                return redirect()->to(ADMIN_VIEW_PROJECT_LINK);
                }
            }else if(is_array($error_messages) && sizeof($error_messages) > 0){                           
                $errors = implode('<br>',$error_messages);
@@ -121,6 +122,12 @@ class Admin_projects_c extends BaseController{
         $data['projects_details'] = $projects_details;
         $data['title'] = ADMIN_PROJECT_TITLE; 
         echo admin_view('admin/createproject',$data);
+    }
+    public function view_projects(){
+
+      $data['title'] = ADMIN_VIEW_PROJECT_TITLE; 
+      echo admin_view('admin/view_projects',$data);
+
     }
     
     

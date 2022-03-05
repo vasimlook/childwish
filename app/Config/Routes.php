@@ -53,6 +53,7 @@ $routes->add('admin-logout', 'Admin_login_c::logout');
 $routes->add('admin-dashboard', 'Admin_c::admin_dashboard');
 $routes->add('admin-update-profile', 'Admin_c::update_profile');
 $routes->add('create-project', 'Admin_projects_c::create_project');
+$routes->add('view-projects', 'Admin_projects_c::view_projects');
 /* END ADMINS ROUTES */
 
 /*
