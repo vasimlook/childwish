@@ -39,15 +39,28 @@ class Admin_projects_c extends BaseController{
         $has_error = false;
         $error_messages  = array();
 
-        $projects_details = array();
+        $projects_details = array();        
 
         if(isset($_POST['projects_title']) && 
-           isset($_POST['projects_description'])){
+           isset($_POST['projects_description']) &&
+           isset($_FILES['projects_image'])){
                $projects_title = trim($_POST['projects_title']);
                $projects_description = trim($_POST['projects_description']);
                $target_amount = (float)trim($_POST['target_amount']);
                $amount_start_date = trim($_POST['amount_start_date']);
                $amount_end_date = trim($_POST['amount_end_date']);
+
+
+               $main_img = singleImageUpload('projects_image');
+               $projectsImage = $main_img[2]['file_name'];
+
+               if(empty($projectsImage) || $projectsImage == ''){
+                 $has_error = true;
+                 $error_messages[] = "Please select projects image!";
+               }else{
+                $projects_details['projects_image'] = $projectsImage;
+               }
+              
 
                if(empty($projects_title) || $projects_title == ''){
                     $has_error = true;

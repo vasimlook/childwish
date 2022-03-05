@@ -36,7 +36,7 @@
                     <div class="card">
                         <div class="card-inner">
                              <?php
-                                $attributes = ['id' => 'frm_change_password','class'=>'gy-3'];
+                                $attributes = ['id' => 'frm_change_password','class'=>'gy-3', 'enctype' => 'multipart/form-data'];
                                 echo form_open(ADMIN_CREATE_PROJECT_LINK,$attributes);
                                ?>                            
                                 <div class="row g-3 align-center">
