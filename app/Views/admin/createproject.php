@@ -104,7 +104,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="text" class="form-control" value = "<?= $amount_start_date ?>"  name="amount_start_date" id="amount_start_date" placeholder="Enter start date" required="" autocomplete="off">
+                                                 <input type="text" class="form-control date-picker" value = "<?= $amount_start_date ?>"  name="amount_start_date" id="amount_start_date" placeholder="Select start date" required="" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="text" class="form-control" value = "<?= $amount_end_date ?>"  name="amount_end_date" id="amount_end_date" placeholder="Enter end date" required="" autocomplete="off">
+                                                 <input type="text" class="form-control date-picker" value = "<?= $amount_end_date ?>"  name="amount_end_date" id="amount_end_date" placeholder="Select end date" required="" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
