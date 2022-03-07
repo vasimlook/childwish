@@ -46,7 +46,65 @@ class Admin_projects_c extends BaseController{
       echo admin_view('admin/createproject',$data);
     }
 
-    public function create_project(){ 
+  function validate_projects($projectsData){
+    $projects_title = trim($projectsData['projects_title']);
+    $projects_description = trim($projectsData['projects_description']);
+    $target_amount = (float)trim($projectsData['target_amount']);
+    $amount_start_date = trim($projectsData['amount_start_date']);
+    $amount_end_date = trim($projectsData['amount_end_date']);
+
+    $has_error = false;
+    $projects_details = array();  
+
+
+    if (empty($projects_title) || $projects_title == '') {
+      $has_error = true;
+      $error_messages[] = "Projects title can not be empty!";
+    } else {
+      $projects_details['projects_title'] = $projects_title;
+    }
+
+    if (empty($projects_description) || $projects_description == '') {
+      $has_error = true;
+      $error_messages[] = "Projects descriptions can not be empty!";
+    } else {
+      $projects_details['projects_description'] = $projects_description;
+    }
+
+
+    if (empty($target_amount) || $target_amount == '' || $target_amount <= 0) {
+      $has_error = true;
+      $error_messages[] = "Target amount can not be empty!";
+    } else {
+      $projects_details['target_amount'] = $target_amount;
+    }
+
+    if (empty($amount_start_date) || $amount_start_date == '') {
+      $has_error = true;
+      $error_messages[] = "Start date can not be empty!";
+    } else {
+      $projects_details['amount_start_date'] = $amount_start_date;
+    }
+
+    if (empty($amount_end_date) || $amount_end_date == '') {
+      $has_error = true;
+      $error_messages[] = "End date can not be empty!";
+    } else {
+      $projects_details['amount_end_date'] = $amount_end_date;
+    }
+
+    if (isset($projectsData['urgent_need']) && $projectsData['urgent_need'] == "on") {
+      $projects_details['urgent_need'] = 1;
+    }
+
+    return array(
+      'has_error' => $has_error,
+      'error_messages' => $error_messages,
+      'projects_details' => $projects_details
+    );
+  }
+
+    public function create_project(){     
         
         $has_error = false;
         $error_messages  = array();
@@ -56,11 +114,12 @@ class Admin_projects_c extends BaseController{
         if(isset($_POST['projects_title']) && 
            isset($_POST['projects_description']) &&
            isset($_FILES['projects_image'])){
-               $projects_title = trim($_POST['projects_title']);
-               $projects_description = trim($_POST['projects_description']);
-               $target_amount = (float)trim($_POST['target_amount']);
-               $amount_start_date = trim($_POST['amount_start_date']);
-               $amount_end_date = trim($_POST['amount_end_date']);
+
+               $validate = self::validate_projects($_POST);
+               
+               $has_error = $validate['has_error'];
+               $error_messages = $validate['error_messages'];
+               $projects_details = $validate['projects_details'];
 
 
                $main_img = singleImageUpload('projects_image');
@@ -71,48 +130,7 @@ class Admin_projects_c extends BaseController{
                  $error_messages[] = "Please select projects image!";
                }else{
                 $projects_details['projects_image'] = $projectsImage;
-               }
-              
-
-               if(empty($projects_title) || $projects_title == ''){
-                    $has_error = true;
-                    $error_messages[] = "Projects title can not be empty!";
-               }else{
-                   $projects_details['projects_title'] = $projects_title;
-               }
-
-               if(empty($projects_description) || $projects_description == ''){
-                $has_error = true;
-                $error_messages[] = "Projects descriptions can not be empty!";
-               }else{
-                $projects_details['projects_description'] = $projects_description;
-               }
-
-
-              if(empty($target_amount) || $target_amount == '' || $target_amount <= 0){
-                $has_error = true;
-                $error_messages[] = "Target amount can not be empty!";
-              }else{
-                $projects_details['target_amount'] = $target_amount;
-               }
-
-              if(empty($amount_start_date) || $amount_start_date == ''){
-                $has_error = true;
-                $error_messages[] = "Start date can not be empty!";
-              }else{
-                $projects_details['amount_start_date'] = $amount_start_date;
-               }
-
-              if(empty($amount_end_date) || $amount_end_date == ''){
-                $has_error = true;
-                $error_messages[] = "End date can not be empty!";
-              }else{
-                $projects_details['amount_end_date'] = $amount_end_date;
-               }
-
-               if(isset($_POST['urgent_need']) && $_POST['urgent_need'] == "on"){
-                $projects_details['urgent_need'] = 1;
-               }
+               }              
            }
 
            if(!$has_error && (is_array($projects_details) && sizeof($projects_details) > 0)){
