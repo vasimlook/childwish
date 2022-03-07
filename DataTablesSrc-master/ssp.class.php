@@ -365,7 +365,13 @@ class SSP {
                 $resData=array();
                 if(!empty($result)){                    
                     foreach ($result as $row){   
-						$id = $row['projects_id'];                                                                                                                                                                         
+						$id = $row['projects_id'];  
+						$status = 'Active';
+
+						if($row['projects_status'] == 0)
+							$status = 'Inactive';
+				        
+						$row['projects_status'] = $status;
                         $row['index']='';                                                                      
                         $row['action']="<a href='".BASE_URL_DATATABLES."edit-projects/".$id."' class='btn btn-xs btn-warning'>Edit  <em class='icon ni ni-edit-fill'></em></a> &nbsp;";
                         array_push($resData, $row);
