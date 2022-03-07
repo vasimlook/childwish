@@ -340,7 +340,7 @@ class SSP {
                     }
                 } 
                 
-                $data = self::sql_exec( $db, $bindings,
+            $data = self::sql_exec( $db, $bindings,
 			"SELECT ".implode(", ", self::pluck($columns, 'db'))."
 			FROM $table                       
 			$where
@@ -361,48 +361,14 @@ class SSP {
                         "
 		);
 		$recordsTotal = $resTotalLength[0][0];                
-                $result=self::data_output($columns,$data);
+                $result=self::data_output($columns,$data);				
                 $resData=array();
                 if(!empty($result)){                    
-                    // foreach ($result as $row){                                                                         
-                    //     $customer_id = $row['customer_id'];                                               
-                    //     $locked_unlocked_str='';
-                    //     $title = 'Click to locke customer';
-                    //     $class = 'btn_lock_unlock_customer btn btn-xs btn-success';
-                    //     $text = "Customer Unlocked <em class='icon ni ni-unlock-fill'></em>";
-                    //     $isactive = 1; 
-                    //     $table='hpshrc_customer';
-                    //     $table_update_field='customer_locked_status';
-                    //     $table_where_field='customer_id';
-                    //     if($row['customer_locked_status'] == 1){
-                    //         $title = 'Click to unlocke customer';
-                    //         $class = 'btn_lock_unlock_customer btn btn-xs btn-danger';
-                    //         $text  = "Customer Locked <em class='icon ni ni-lock-fill'></em>";
-                    //         $isactive = 0;                            
-                    //     }                                                    
-                    //     $locked_unlocked_str="<button type='button' data-id='".$customer_id."' data-status = '".$isactive."' title='".$title."' class='".$class."' data-table = '".$table."' data-updatefield = '".$table_update_field."' data-wherefield = '".$table_where_field."'>".$text."</button>";                            //                                                
-                        
-                    //     $active_inactive_str='';
-                    //     $title = 'Click to inactive customer';
-                    //     $class = 'btn_active_inactive_customer btn btn-xs btn-success';
-                    //     $text = "Customer Activated <em class='icon ni ni-user-check-fill'></em>";
-                    //     $isactive = "REMOVED"; 
-                    //     $table='hpshrc_customer';
-                    //     $table_update_field='customer_status';
-                    //     $table_where_field='customer_id';
-                    //     if($row['customer_status'] == "REMOVED"){
-                    //         $title = 'Click to active customer';
-                    //         $class = 'btn_active_inactive_customer btn btn-xs btn-danger';
-                    //         $text  = "Customer Inactivated <em class='icon ni ni-user-cross-fill'></em>";
-                    //         $isactive = "ACTIVE";                            
-                    //     }                                                    
-                    //     $active_inactive_str="<button type='button' data-id='".$customer_id."' data-status = '".$isactive."' title='".$title."' class='".$class."' data-table = '".$table."' data-updatefield = '".$table_update_field."' data-wherefield = '".$table_where_field."'>".$text."</button>";                            //                                                                                                
-                    //     $row['index']='';                                                                      
-                    //     $row['action']="<a href='".BASE_URL_DATATABLES."employee-edit-customer/$customer_id' class='btn btn-xs btn-warning'>Edit  <em class='icon ni ni-edit-fill'></em></a> &nbsp; 
-                    //         <a href='".BASE_URL_DATATABLES."employee-customers-view/$customer_id' class='btn btn-xs btn-primary'>View  <em class='icon ni ni-eye-fill'></em></a>    
-                    //         $locked_unlocked_str $active_inactive_str";
-                    //     array_push($resData, $row);
-                    // }  
+                    foreach ($result as $row){                                                                                                                                                                            
+                        $row['index']='';                                                                      
+                        $row['action']="<a href='".BASE_URL_DATATABLES."employee-edit-customer/id' class='btn btn-xs btn-warning'>Edit  <em class='icon ni ni-edit-fill'></em></a> &nbsp;";
+                        array_push($resData, $row);
+                    }  
                 }
 		/*
 		 * Output
