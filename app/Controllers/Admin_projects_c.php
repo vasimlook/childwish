@@ -49,6 +49,7 @@ class Admin_projects_c extends BaseController{
           $projects_details['amount_end_date'] = date("m/d/Y", strtotime($projects_details['amount_end_date']));
         }
       }
+
       $data['edit_projects'] = true;
       $data['projects_id'] = $projects_id;
       $data['projects_details'] = $projects_details;
@@ -114,55 +115,57 @@ class Admin_projects_c extends BaseController{
     );
   }
 
-    public function create_project(){     
-        
-        $has_error = false;
-        $error_messages  = array();
+  public function create_project(){
 
-        $projects_details = array();        
+    $has_error = false;
+    $error_messages  = array();
 
-        if(isset($_POST['projects_title']) && 
-           isset($_POST['projects_description']) &&
-           isset($_FILES['projects_image'])){
+    $projects_details = array();
 
-               $validate = self::validate_projects($_POST);
-               
-               $has_error = $validate['has_error'];
-               $error_messages = $validate['error_messages'];
-               $projects_details = $validate['projects_details'];
+    if (
+      isset($_POST['projects_title']) &&
+      isset($_POST['projects_description']) &&
+      isset($_FILES['projects_image'])
+    ) {
+
+      $validate = self::validate_projects($_POST);
+
+      $has_error = $validate['has_error'];
+      $error_messages = $validate['error_messages'];
+      $projects_details = $validate['projects_details'];
 
 
-               $main_img = singleImageUpload('projects_image');
-               $projectsImage = $main_img[2]['file_name'];
+      $main_img = singleImageUpload('projects_image');
+      $projectsImage = $main_img[2]['file_name'];
 
-               if(empty($projectsImage) || $projectsImage == ''){
-                 $has_error = true;
-                 $error_messages[] = "Please select projects image!";
-               }else{
-                $projects_details['projects_image'] = $projectsImage;
-               }              
-           }
-
-           if(!$has_error && (is_array($projects_details) && sizeof($projects_details) > 0)){
-               //create projects
-
-               $projectsId = $this->Project_m->create_projects($projects_details);
-
-               if($projectsId){
-                successOrErrorMessage("Projects has been successfully created", 'success');
-                return redirect()->to(ADMIN_VIEW_PROJECT_LINK);
-               }
-           }else if(is_array($error_messages) && sizeof($error_messages) > 0){                           
-               $errors = implode('<br>',$error_messages);
-               successOrErrorMessage($errors, 'error');               
-           }
-
-        helper('form');
-
-        $data['projects_details'] = $projects_details;
-        $data['title'] = ADMIN_PROJECT_TITLE; 
-        echo admin_view('admin/createproject',$data);
+      if (empty($projectsImage) || $projectsImage == '') {
+        $has_error = true;
+        $error_messages[] = "Please select projects image!";
+      } else {
+        $projects_details['projects_image'] = $projectsImage;
+      }
     }
+
+    if (!$has_error && (is_array($projects_details) && sizeof($projects_details) > 0)) {
+      //create projects
+
+      $projectsId = $this->Project_m->create_projects($projects_details);
+
+      if ($projectsId) {
+        successOrErrorMessage("Projects has been successfully created", 'success');
+        return redirect()->to(ADMIN_VIEW_PROJECT_LINK);
+      }
+    } else if (is_array($error_messages) && sizeof($error_messages) > 0) {
+      $errors = implode('<br>', $error_messages);
+      successOrErrorMessage($errors, 'error');
+    }
+
+    helper('form');
+
+    $data['projects_details'] = $projects_details;
+    $data['title'] = ADMIN_PROJECT_TITLE;
+    echo admin_view('admin/createproject', $data);
+  }
     public function view_projects(){
 
       $data['title'] = ADMIN_VIEW_PROJECT_TITLE; 
