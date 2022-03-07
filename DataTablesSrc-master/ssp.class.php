@@ -364,9 +364,10 @@ class SSP {
                 $result=self::data_output($columns,$data);				
                 $resData=array();
                 if(!empty($result)){                    
-                    foreach ($result as $row){                                                                                                                                                                            
+                    foreach ($result as $row){   
+						$id = $row['projects_id'];                                                                                                                                                                         
                         $row['index']='';                                                                      
-                        $row['action']="<a href='".BASE_URL_DATATABLES."employee-edit-customer/id' class='btn btn-xs btn-warning'>Edit  <em class='icon ni ni-edit-fill'></em></a> &nbsp;";
+                        $row['action']="<a href='".BASE_URL_DATATABLES."edit-projects/".$id."' class='btn btn-xs btn-warning'>Edit  <em class='icon ni ni-edit-fill'></em></a> &nbsp;";
                         array_push($resData, $row);
                     }  
                 }
