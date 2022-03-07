@@ -48,8 +48,55 @@
             }
             return true;
         });
-    });
+    });    
 </script>
+
+<?php if ($title == ADMIN_VIEW_PROJECT_TITLE) {
+    ?> 
+    <script nonce='S51U26wMQz' type="text/javascript">
+        $(document).ready(function () {         
+            fill_datatable1();
+            function fill_datatable1()
+            {
+                $('#example').DataTable({
+                    responsive: {
+                        details: {
+                            type: 'column',
+                            target: 'tr'
+                        }
+                    },
+
+                    columnDefs: [{
+                            className: 'control',
+                            orderable: false,
+                            targets: 0
+                        }],
+                    "processing": true,
+                    "serverSide": true,
+                    "pageLength": 10,
+                    "paginationType": "full_numbers",
+                    "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                    "ajax": {
+                        'type': 'POST',
+                        'url': "<?php echo BASE_URL . '/DataTablesSrc-master/projects_list.php' ?>",                        
+                    },
+                    "columns": [
+                        {"data": "index"},
+                        {"data": "projects_id"},
+                        {"data": "projects_title"},
+                        {"data": "projects_description"},
+                        {"data": "target_amount"},
+                        {"data": "received_amount"},
+                        {"data": "amount_start_date"},
+                        {"data": "amount_end_date"},
+                        {"data": "projects_status"},
+                        {"data": "action"}
+                    ]
+                });
+            }
+        });
+    </script>
+<?php } ?> 
 
 </body>
 </html>

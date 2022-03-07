@@ -40,7 +40,7 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="#" class="nk-menu-link"><span class="nk-menu-text">Projects List</span></a>
+                                            <a href="<?= ADMIN_VIEW_PROJECT_LINK ?>" class="nk-menu-link"><span class="nk-menu-text">Projects List</span></a>
                                             <a href="<?= ADMIN_CREATE_PROJECT_LINK ?>" class="nk-menu-link"><span class="nk-menu-text">Create Project</span></a>
                                         </li>                                       
                                     </ul>                                     

@@ -39,15 +39,28 @@ class Admin_projects_c extends BaseController{
         $has_error = false;
         $error_messages  = array();
 
-        $projects_details = array();
+        $projects_details = array();        
 
         if(isset($_POST['projects_title']) && 
-           isset($_POST['projects_description'])){
+           isset($_POST['projects_description']) &&
+           isset($_FILES['projects_image'])){
                $projects_title = trim($_POST['projects_title']);
                $projects_description = trim($_POST['projects_description']);
-               $target_amount = trim($_POST['target_amount']);
+               $target_amount = (float)trim($_POST['target_amount']);
                $amount_start_date = trim($_POST['amount_start_date']);
                $amount_end_date = trim($_POST['amount_end_date']);
+
+
+               $main_img = singleImageUpload('projects_image');
+               $projectsImage = $main_img[2]['file_name'];
+
+               if(empty($projectsImage) || $projectsImage == ''){
+                 $has_error = true;
+                 $error_messages[] = "Please select projects image!";
+               }else{
+                $projects_details['projects_image'] = $projectsImage;
+               }
+              
 
                if(empty($projects_title) || $projects_title == ''){
                     $has_error = true;
@@ -64,7 +77,7 @@ class Admin_projects_c extends BaseController{
                }
 
 
-              if(empty($target_amount) || $target_amount == ''){
+              if(empty($target_amount) || $target_amount == '' || $target_amount <= 0){
                 $has_error = true;
                 $error_messages[] = "Target amount can not be empty!";
               }else{
@@ -97,6 +110,7 @@ class Admin_projects_c extends BaseController{
 
                if($projectsId){
                 successOrErrorMessage("Projects has been successfully created", 'success');
+                return redirect()->to(ADMIN_VIEW_PROJECT_LINK);
                }
            }else if(is_array($error_messages) && sizeof($error_messages) > 0){                           
                $errors = implode('<br>',$error_messages);
@@ -108,6 +122,12 @@ class Admin_projects_c extends BaseController{
         $data['projects_details'] = $projects_details;
         $data['title'] = ADMIN_PROJECT_TITLE; 
         echo admin_view('admin/createproject',$data);
+    }
+    public function view_projects(){
+
+      $data['title'] = ADMIN_VIEW_PROJECT_TITLE; 
+      echo admin_view('admin/view_projects',$data);
+
     }
     
     

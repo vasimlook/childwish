@@ -13,6 +13,8 @@ class Project_m extends Model{
     }  
     
     public function create_projects($params) {
+        $params['amount_start_date'] = date("Y-m-d", strtotime($params['amount_start_date']));
+        $params['amount_end_date'] = date("Y-m-d", strtotime($params['amount_end_date']));         
         $builder = $this->db->table('donation_projects');
         $builder->insert($params);
         return $this->db->insertID();
