@@ -39,6 +39,16 @@ class Admin_projects_c extends BaseController{
       helper('form');
 
       $projects_details = $this->Project_m->get_projects_details($projects_id);
+    
+      if(is_array($projects_details) && sizeof($projects_details) > 0){
+        if(isset($projects_details['amount_start_date'])){
+          $projects_details['amount_start_date'] = date("m/d/Y", strtotime($projects_details['amount_start_date']));
+        }
+
+        if(isset($projects_details['amount_end_date'])){
+          $projects_details['amount_end_date'] = date("m/d/Y", strtotime($projects_details['amount_end_date']));
+        }
+      }
       $data['edit_projects'] = true;
       $data['projects_id'] = $projects_id;
       $data['projects_details'] = $projects_details;
