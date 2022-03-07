@@ -11,6 +11,22 @@ class Project_m extends Model{
         $this->db = db_connect();
         helper('functions');
     }  
+
+    public function get_projects_details($projectsId){
+        $details = array();
+        $projectsId = (int)$projectsId;
+
+        if($projectsId === 0)
+            return $details;
+         
+        $projects = $this->db->query("SELECT *
+                                        FROM   donation_projects
+                                    WHERE projects_id = {$projectsId} ");
+        $projects_details = $projects->getRowArray();      
+
+        return $projects_details;    
+
+    }
     
     public function create_projects($params) {
         $params['amount_start_date'] = date("Y-m-d", strtotime($params['amount_start_date']));

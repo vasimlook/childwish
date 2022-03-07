@@ -38,7 +38,7 @@ class Admin_projects_c extends BaseController{
     public function edit_projects($projects_id){
       helper('form');
 
-      $projects_details = array();
+      $projects_details = $this->Project_m->get_projects_details($projects_id);
       $data['edit_projects'] = true;
       $data['projects_id'] = $projects_id;
       $data['projects_details'] = $projects_details;
