@@ -1,4 +1,19 @@
 <?php
+
+    $edit_mode = false;
+
+    if(isset($edit_projects) && $edit_projects == true){
+        $edit_mode = true;
+    }
+
+    $pageTitle = "Create Project";
+    $ActionLink = ADMIN_CREATE_PROJECT_LINK;
+
+    if($edit_mode){
+        $ActionLink = ADMIN_EDIT_PROJECT_LINK.'/'.$projects_id;
+        $pageTitle = "Edit Project";
+    }
+
     $projects_title = "";
     $projects_description = "";
     $target_amount  = "";
@@ -28,7 +43,7 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">Create Project</h3>
+                            <h3 class="nk-block-title page-title"><?= $pageTitle ?></h3>
                         </div>
                     </div><!-- .nk-block-between -->
                 </div><!-- .nk-block-head -->
@@ -36,8 +51,8 @@
                     <div class="card">
                         <div class="card-inner">
                              <?php
-                                $attributes = ['id' => 'frm_change_password','class'=>'gy-3', 'enctype' => 'multipart/form-data'];
-                                echo form_open(ADMIN_CREATE_PROJECT_LINK,$attributes);
+                                $attributes = ['id' => 'frm_projects_manipulation','class'=>'gy-3', 'enctype' => 'multipart/form-data'];
+                                echo form_open($ActionLink,$attributes);
                                ?>                            
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-4">
@@ -141,7 +156,7 @@
                                 <div class="row g-3">
                                     <div class="col-lg-7 offset-lg-5">
                                         <div class="form-group mt-2">
-                                            <button type="submit" class="btn btn-lg btn-primary">Create Project</button>                                          
+                                            <button type="submit" class="btn btn-lg btn-primary"><?= $pageTitle ?></button>                                          
                                         </div>
                                     </div>
                                 </div>

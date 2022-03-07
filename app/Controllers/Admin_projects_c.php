@@ -34,6 +34,18 @@ class Admin_projects_c extends BaseController{
             
         }                      
     }
+
+    public function edit_projects($projects_id){
+      helper('form');
+
+      $projects_details = array();
+      $data['edit_projects'] = true;
+      $data['projects_id'] = $projects_id;
+      $data['projects_details'] = $projects_details;
+      $data['title'] = ADMIN_PROJECT_TITLE; 
+      echo admin_view('admin/createproject',$data);
+    }
+
     public function create_project(){ 
         
         $has_error = false;
