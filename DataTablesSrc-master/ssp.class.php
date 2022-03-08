@@ -368,6 +368,20 @@ class SSP {
 						$id = $row['projects_id'];  
 						$checked = '';
 
+
+						
+						$projects_description = strip_tags($row['projects_description']);
+						if (strlen($projects_description) > 30) {
+
+							// truncate string
+							$stringCut = substr($projects_description, 0, 30);
+							$endPoint = strrpos($stringCut, ' ');
+							$projects_description = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+							$projects_description .= '...';
+						}
+
+						$row['projects_description'] = $projects_description;						
+
 						if($row['projects_status'] == 1)
 							$checked = 'checked';
 					
