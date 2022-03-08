@@ -366,12 +366,14 @@ class SSP {
                 if(!empty($result)){                    
                     foreach ($result as $row){   
 						$id = $row['projects_id'];  
-						$status = 'Active';
+						$checked = '';
 
-						if($row['projects_status'] == 0)
-							$status = 'Inactive';
+						if($row['projects_status'] == 1)
+							$checked = 'checked';
+					
+					    $statusCheckbox = "<input type='checkbox' ".$checked." class='projects_status' data-id =".$id." ";
 				        
-						$row['projects_status'] = $status;
+						$row['projects_status'] = $statusCheckbox;
                         $row['index']='';                                                                      
                         $row['action']="<a href='".BASE_URL_DATATABLES."edit-projects/".$id."' class='btn btn-xs btn-warning'>Edit  <em class='icon ni ni-edit-fill'></em></a> &nbsp;";
                         array_push($resData, $row);
