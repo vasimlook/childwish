@@ -35,5 +35,13 @@ class Project_m extends Model{
         $builder->insert($params);
         return $this->db->insertID();
     }
+
+    public function update_projects($params,$projectsId){
+        $params['amount_start_date'] = date("Y-m-d", strtotime($params['amount_start_date']));
+        $params['amount_end_date'] = date("Y-m-d", strtotime($params['amount_end_date']));
+        $builder = $this->db->table('donation_projects');
+        $builder->where('projects_id', $projectsId);
+        return $builder->update($params);
+    }
    
 }

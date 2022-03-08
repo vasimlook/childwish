@@ -39,6 +39,9 @@ class Admin_projects_c extends BaseController{
       helper('form');
 
       $projects_details = $this->Project_m->get_projects_details($projects_id);
+      $has_error = false;
+      $error_messages  = array();
+      $submitForm = false;
     
       if(is_array($projects_details) && sizeof($projects_details) > 0){
         if(isset($projects_details['amount_start_date'])){
@@ -48,6 +51,44 @@ class Admin_projects_c extends BaseController{
         if(isset($projects_details['amount_end_date'])){
           $projects_details['amount_end_date'] = date("m/d/Y", strtotime($projects_details['amount_end_date']));
         }
+      }
+
+      if (
+        isset($_POST['projects_title']) &&
+        isset($_POST['projects_description']) 
+      ) {
+  
+        $submitForm = true;
+        $validate = self::validate_projects($_POST);
+  
+        $has_error = $validate['has_error'];
+        $error_messages = $validate['error_messages'];
+        $projects_details = $validate['projects_details'];
+  
+  
+        if(isset($_FILES['projects_image'])){
+          $main_img = singleImageUpload('projects_image');
+          $projectsImage = $main_img[2]['file_name'];
+    
+          if (empty($projectsImage) || $projectsImage == '') {            
+          } else {
+            $projects_details['projects_image'] = $projectsImage;
+          }
+        }       
+      }
+
+      if ($submitForm && !$has_error && (is_array($projects_details) && sizeof($projects_details) > 0)) {
+        //create projects
+  
+        $update = $this->Project_m->update_projects($projects_details,$projects_id);
+  
+        if ($update) {
+          successOrErrorMessage("Projects has been successfully updated", 'success');
+          return redirect()->to(ADMIN_VIEW_PROJECT_LINK);
+        }
+      } else if (is_array($error_messages) && sizeof($error_messages) > 0) {
+        $errors = implode('<br>', $error_messages);
+        successOrErrorMessage($errors, 'error');
       }
 
       $data['edit_projects'] = true;
