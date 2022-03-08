@@ -86,7 +86,7 @@
                                         <a href="<?= PROJECTS_DETAILS.'/'.$projectId  ?>">
                                             <span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
                                                 <span class="thumb-info-wrapper">
-                                                    <img src="<?php echo ASSETS_FOLDER; ?>img/projects/<?= $projectsImage ?>" class="full-width" alt="" style="border-top-left-radius:10px;border-top-right-radius:10px">
+                                                    <img src="<?php echo UPLOAD_FOLDER; ?>original/<?= $projectsImage ?>" class="full-width" alt="" style="border-top-left-radius:10px;border-top-right-radius:10px">
                                                 </span>
                                             </span>
                                         </a>
