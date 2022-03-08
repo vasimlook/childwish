@@ -6,13 +6,11 @@
         $edit_mode = true;
     }
 
-    $pageTitle = "Create Project";
-    $ActionLink = ADMIN_CREATE_PROJECT_LINK;
+    $imageRequired = true;
+    $projectsImage = "";
 
-    if($edit_mode){
-        $ActionLink = ADMIN_EDIT_PROJECT_LINK.'/'.$projects_id;
-        $pageTitle = "Edit Project";
-    }
+    $pageTitle = "Create Project";
+    $ActionLink = ADMIN_CREATE_PROJECT_LINK;         
 
     $projects_title = "";
     $projects_description = "";
@@ -34,6 +32,17 @@
             }
         }
     }
+
+    if($edit_mode){
+        $ActionLink = ADMIN_EDIT_PROJECT_LINK.'/'.$projects_id;
+        $pageTitle = "Edit Project";
+
+        if(isset($projects_details['projects_image']) && $projects_details['projects_image'] != ''){
+            $imageRequired = false;
+            $projectsImage = $projects_details['projects_image'];
+        }
+        
+    } 
 ?>
 
 <div class="nk-content">
@@ -91,8 +100,13 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="file"  name="projects_image" id="projects_image"  required>
+                                                 <input type="file"  name="projects_image" id="projects_image" <?= ($imageRequired) ? "required" : "" ?>>
                                             </div>
+                                            <?php if($edit_mode && $projectsImage != ''): ?>
+                                            <div style="margin-top: 10px;">
+                                                <img src="<?= UPLOAD_FOLDER.'original/'. $projectsImage ?>">
+                                            </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
