@@ -213,6 +213,10 @@ class Admin_projects_c extends BaseController{
       echo admin_view('admin/view_projects',$data);
 
     }
+  
+  public function update_status(){
+    echo $_REQUEST['projects_status'];
+  }
     
     
 }

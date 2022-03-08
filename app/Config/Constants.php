@@ -130,6 +130,7 @@ define('ADMIN_UPDATE_PROFILE_LINK', BASE_URL_CI.'/admin-update-profile');
 define('ADMIN_CREATE_PROJECT_LINK', BASE_URL_CI.'/create-project');
 define('ADMIN_VIEW_PROJECT_LINK', BASE_URL_CI.'/view-projects');
 define('ADMIN_EDIT_PROJECT_LINK', BASE_URL_CI.'/edit-projects');
+define('ADMIN_UPDATE_PROJECT_STATUS', BASE_URL_CI.'/update-projects-status');
 
 
 

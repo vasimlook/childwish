@@ -94,6 +94,29 @@
                     ]
                 });
             }
+
+            $(document).on('change','.projects_status',function(res){
+
+                var projects_status = 0;
+                if ($(this).prop('checked')==true){ 
+                    projects_status = 1;
+                }
+                
+                var data ={
+                    projects_status
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo ADMIN_UPDATE_PROJECT_STATUS ?>",
+                    data: data,
+                    success: function (res) {
+                        var res = $.parseJSON(res);
+                        if (res.suceess) {
+                        }
+                    }
+                });
+            });
         });
     </script>
 <?php } ?> 

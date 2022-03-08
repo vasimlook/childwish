@@ -55,6 +55,7 @@ $routes->add('admin-update-profile', 'Admin_c::update_profile');
 $routes->add('create-project', 'Admin_projects_c::create_project');
 $routes->add('view-projects', 'Admin_projects_c::view_projects');
 $routes->add('edit-projects/(:any)', 'Admin_projects_c::edit_projects/$1');
+$routes->add('update-projects-status', 'Admin_projects_c::update_status');
 /* END ADMINS ROUTES */
 
 /*
