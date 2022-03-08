@@ -30,7 +30,8 @@ class Project_m extends Model{
     
     public function create_projects($params) {
         $params['amount_start_date'] = date("Y-m-d", strtotime($params['amount_start_date']));
-        $params['amount_end_date'] = date("Y-m-d", strtotime($params['amount_end_date']));         
+        $params['amount_end_date'] = date("Y-m-d", strtotime($params['amount_end_date']));   
+        $params['projects_status'] = 1;
         $params['created_at'] = date("Y-m-d H:i:s");
         $params['created_by'] = (int)$_SESSION['admin']['admin_user_id'];
         $builder = $this->db->table('donation_projects');
