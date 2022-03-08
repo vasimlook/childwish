@@ -32,6 +32,7 @@ class Project_m extends Model{
         $params['amount_start_date'] = date("Y-m-d", strtotime($params['amount_start_date']));
         $params['amount_end_date'] = date("Y-m-d", strtotime($params['amount_end_date']));         
         $params['created_at'] = date("Y-m-d H:i:s");
+        $params['created_by'] = (int)$_SESSION['admin']['admin_user_id'];
         $builder = $this->db->table('donation_projects');
         $builder->insert($params);
         return $this->db->insertID();
@@ -41,6 +42,7 @@ class Project_m extends Model{
         $params['amount_start_date'] = date("Y-m-d", strtotime($params['amount_start_date']));
         $params['amount_end_date'] = date("Y-m-d", strtotime($params['amount_end_date']));
         $params['updated_at'] = date("Y-m-d H:i:s");
+        $params['created_by'] = (int)$_SESSION['admin']['admin_user_id'];
         $builder = $this->db->table('donation_projects');
         $builder->where('projects_id', $projectsId);
         return $builder->update($params);
