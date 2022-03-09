@@ -385,7 +385,7 @@ class SSP {
 						if($row['projects_status'] == 1)
 							$checked = 'checked';
 					
-					    $statusCheckbox = "<input type='checkbox' ".$checked." class='projects_status' data-id =".$id." ";
+					    $statusCheckbox = "<input type='checkbox' ".$checked." class='projects_status' data-id =".$id.">";
 				        
 						$row['projects_status'] = $statusCheckbox;
                         $row['index']='';                                                                      

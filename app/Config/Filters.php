@@ -18,13 +18,7 @@ class Filters extends BaseConfig
 //			'honeypot',
                     'csrf' => ['except' => [
                                                 'master-admin-update-profile',
-                                                'master-admin-load-categories',
-                                                'master-admin-load-sub-categories',
-                                                'master-admin-product-list-ajax',
-                                                'master-admin-approve-status',
-                                                'master-admin-delete-product-image',
-                                                'master-admin-get-edit-product',
-                                                'master-admin-edit-product'
+												'update-projects-status'                                              
                                            ]]                   
 		],
 		'after'  => [
