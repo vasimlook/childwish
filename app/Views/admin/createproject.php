@@ -100,7 +100,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                 <input type="file"  name="projects_image" id="projects_image" <?= ($imageRequired) ? "required" : "" ?>>
+                                                 <input type="file" accept="image/*"  name="projects_image" id="projects_image" <?= ($imageRequired) ? "required" : "" ?>>
                                             </div>
                                             <?php if($edit_mode && $projectsImage != ''): ?>
                                             <div style="margin-top: 10px;">
@@ -148,6 +148,20 @@
                                         <div class="form-group">
                                             <div class="form-control-wrap">
                                                  <input type="text" class="form-control date-picker" value = "<?= $amount_end_date ?>"  name="amount_end_date" id="amount_end_date" placeholder="Select end date" required="" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-center">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">                                             
+                                             <label class="form-label float-right" for="other_images">Other images: </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <input type="file"  name="other_projects_images[]" id="other_projects_images" accept="image/*" multiple>
                                             </div>
                                         </div>
                                     </div>

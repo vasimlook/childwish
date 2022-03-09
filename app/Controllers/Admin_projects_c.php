@@ -177,7 +177,7 @@ class Admin_projects_c extends BaseController{
 
 
       $main_img = singleImageUpload('projects_image');
-      $projectsImage = $main_img[2]['file_name'];
+      $projectsImage = $main_img[2]['file_name'];     
 
       if (empty($projectsImage) || $projectsImage == '') {
         $has_error = true;
@@ -193,6 +193,18 @@ class Admin_projects_c extends BaseController{
       $projectsId = $this->Project_m->create_projects($projects_details);
 
       if ($projectsId) {
+
+        if (($_FILES['other_projects_images']['name'][0]) != '') {
+          $other_projects_images = multiImageUpload('other_projects_images');
+          foreach ($other_projects_images as $poi) {
+              $params = array();
+              $params['projects_id'] =$projectsId;
+              $params['image_name'] = $poi[2]['file_name'];
+              $params['active'] = 1;
+              $this->Project_m->add_projects_images($params);
+          }
+       }
+
         successOrErrorMessage("Projects has been successfully created", 'success');
         return redirect()->to(ADMIN_VIEW_PROJECT_LINK);
       }
