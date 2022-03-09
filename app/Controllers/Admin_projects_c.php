@@ -39,6 +39,7 @@ class Admin_projects_c extends BaseController{
       helper('form');
 
       $projects_details = $this->Project_m->get_projects_details($projects_id);
+      $projects_images = $this->Project_m->get_projects_images($projects_id);
       $has_error = false;
       $error_messages  = array();
       $submitForm = false;
@@ -51,6 +52,8 @@ class Admin_projects_c extends BaseController{
         if(isset($projects_details['amount_end_date'])){
           $projects_details['amount_end_date'] = date("m/d/Y", strtotime($projects_details['amount_end_date']));
         }
+
+        $projects_details['other_images'] = $projects_images;
       }
 
       if (

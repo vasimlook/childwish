@@ -45,6 +45,21 @@ class Project_m extends Model{
         return $this->db->insertID();
     }
 
+    public function get_projects_images($projectsId){
+        $images = array();
+        $projectsId = (int)$projectsId;
+
+        if($projectsId === 0)
+            return $images;
+         
+        $projects = $this->db->query("SELECT *
+                                        FROM   donation_projects_images
+                                    WHERE projects_id = {$projectsId} ");
+        $projects_images = $projects->getResultArray();      
+
+        return $projects_images;  
+    }
+
     public function update_projects($params,$projectsId){
         $params['amount_start_date'] = date("Y-m-d", strtotime($params['amount_start_date']));
         $params['amount_end_date'] = date("Y-m-d", strtotime($params['amount_end_date']));
