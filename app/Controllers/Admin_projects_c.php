@@ -86,6 +86,17 @@ class Admin_projects_c extends BaseController{
         $update = $this->Project_m->update_projects($projects_details,$projects_id);
   
         if ($update) {
+
+          if (($_FILES['other_projects_images']['name'][0]) != '') {
+            $other_projects_images = multiImageUpload('other_projects_images');
+            foreach ($other_projects_images as $poi) {
+                $params = array();
+                $params['projects_id'] = $projects_id;
+                $params['image_name'] = $poi[2]['file_name'];
+                $params['active'] = 1;
+                $this->Project_m->add_projects_images($params);
+            }
+         }
           successOrErrorMessage("Projects has been successfully updated", 'success');
           return redirect()->to(ADMIN_VIEW_PROJECT_LINK);
         }
