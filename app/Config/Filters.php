@@ -18,7 +18,8 @@ class Filters extends BaseConfig
 //			'honeypot',
                     'csrf' => ['except' => [
                                                 'master-admin-update-profile',
-												'update-projects-status'                                              
+												'update-projects-status' ,
+												'delete-projects-image'                                            
                                            ]]                   
 		],
 		'after'  => [

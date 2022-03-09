@@ -50,10 +50,10 @@ if ($edit_mode) {
             $imageId = $other_image['image_id'];      
             $imagePATH = UPLOAD_FOLDER.'original/'.$imageName;     
 
-            $otherImageHtml .= '<div class="outer col-md-2" id=img_104>
+            $otherImageHtml .= '<div class="outer col-md-2" id="img_'.$imageId.'">
                                     <ion-card class="inner" *ngFor="let i of images">
                                         <img src="'.$imagePATH.'" />
-                                        <span class="close-icon delete-image" data-id="'.$imageId.'">X</span>
+                                        <span  class="close-icon delete-image" data-id="'.$imageId.'">X</span>
                                     </ion-card>
                                 </div> ';        }
     }

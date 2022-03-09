@@ -108,7 +108,7 @@ class Admin_projects_c extends BaseController{
       $data['edit_projects'] = true;
       $data['projects_id'] = $projects_id;
       $data['projects_details'] = $projects_details;
-      $data['title'] = ADMIN_PROJECT_TITLE; 
+      $data['title'] = ADMIN_EDIT_PROJECT_TITLE; 
       echo admin_view('admin/createproject',$data);
     }
 
@@ -242,6 +242,23 @@ class Admin_projects_c extends BaseController{
   
   public function update_status(){
     echo $_REQUEST['projects_status'];
+  }
+
+  public function delete_projects_image(){
+    $imageId = (int)$_REQUEST['image_id'];
+    $delete =  $this->Project_m->delete_projects_image($imageId);
+
+    if($delete){
+      $output = array(
+        'success' => 'success'
+      );
+    }else{
+      $output = array(
+        'error' => true
+      );
+    }
+
+    echo json_encode($output);
   }
     
     

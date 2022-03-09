@@ -69,5 +69,18 @@ class Project_m extends Model{
         $builder->where('projects_id', $projectsId);
         return $builder->update($params);
     }
+
+    public function delete_projects_image($imageId){
+        $imageId = (int)$imageId;
+
+        if($imageId === 0)
+            return false;
+        
+        $builder = $this->db->table('donation_projects_images');
+        $builder->where('image_id', $imageId);
+        
+        $builder->delete();     
+        return true;
+    }
    
 }

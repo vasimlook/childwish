@@ -106,6 +106,7 @@ define('ADMIN_DASHBOARD', 'Admin dashboard');
 define('ADMIN_UPDATE_PROFILE_TITLE', 'Admin update profile');
 define('ADMIN_PROJECT_TITLE', 'Admin project');
 define('ADMIN_VIEW_PROJECT_TITLE', 'Admin view project');
+define('ADMIN_EDIT_PROJECT_TITLE', 'Admin edit project');
 
 
 
@@ -131,6 +132,7 @@ define('ADMIN_CREATE_PROJECT_LINK', BASE_URL_CI.'/create-project');
 define('ADMIN_VIEW_PROJECT_LINK', BASE_URL_CI.'/view-projects');
 define('ADMIN_EDIT_PROJECT_LINK', BASE_URL_CI.'/edit-projects');
 define('ADMIN_UPDATE_PROJECT_STATUS', BASE_URL_CI.'/update-projects-status');
+define('ADMIN_DELETE_PROJECT_IMAGE', BASE_URL_CI.'/delete-projects-image');
 
 
 
