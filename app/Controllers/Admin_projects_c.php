@@ -241,7 +241,22 @@ class Admin_projects_c extends BaseController{
     }
   
   public function update_status(){
-    echo $_REQUEST['projects_status'];
+    $projects_status = (int) $_REQUEST['projects_status'];
+    $projects_id = (int) $_REQUEST['projects_id'];
+    $update =  $this->Project_m->update_projects_status($projects_status,$projects_id);
+
+    if($update){
+      $output = array(
+        'success' => 'success'
+      );
+    }else{
+      $output = array(
+        'error' => true
+      );
+    }
+
+    echo json_encode($output);
+    
   }
 
   public function delete_projects_image(){

@@ -82,5 +82,18 @@ class Project_m extends Model{
         $builder->delete();     
         return true;
     }
+
+    public function update_projects_status($projects_status,$projects_id){
+        $projects_id = (int)$projects_id;
+
+        if($projects_id === 0)
+            return false;
+
+        $params['projects_status'] = (int)$projects_status;
+        $builder = $this->db->table('donation_projects');
+        $builder->where('projects_id', $projects_id);
+        return $builder->update($params);
+        
+    }
    
 }

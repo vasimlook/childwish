@@ -124,12 +124,14 @@
             $(document).on('change', '.projects_status', function(res) {
 
                 var projects_status = 0;
+                var projects_id = $(this).attr('data-id');              
                 if ($(this).prop('checked') == true) {
                     projects_status = 1;
                 }
 
                 var data = {
-                    projects_status
+                    projects_status,
+                    projects_id
                 }
 
                 $.ajax({
@@ -138,7 +140,11 @@
                     data: data,
                     success: function(res) {
                         var res = $.parseJSON(res);
-                        if (res.suceess) {}
+
+                        var message  = (projects_status == 1) ? 'Project activated' : 'Project deactivated';
+                        if (res.success == 'success' ) {
+                            alert(message);
+                        }
                     }
                 });
             });
