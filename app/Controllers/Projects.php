@@ -16,6 +16,8 @@ class Projects extends BaseController
     public function details($projectsId)
     {
         $projects_details =  $this->Projects_m->get_projects_details($projectsId);
+        $projects_images = $this->Projects_m->get_projects_images($projectsId);
+        $projects_details['projects_images'] = $projects_images;
         $data['projects_details'] = $projects_details;
         $data['title'] = ABOUT_PROJECT;
         echo front_view('projects_details',$data);

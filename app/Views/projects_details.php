@@ -2,6 +2,39 @@
 $projects_title = $projects_details['projects_title'];
 $projects_description = $projects_details['projects_description'];
 $projects_image = $projects_details['projects_image'];
+
+$main_image[] = array(
+    'image_name' => $projects_image
+);
+$multiple_image_html = '';
+if(isset($projects_details['projects_images']) && 
+is_array($projects_details['projects_images']) &&
+sizeof($projects_details['projects_images']) > 0
+){
+    $project_images = $projects_details['projects_images'];
+
+    $project_images = array_merge($main_image,$project_images);  
+}else{
+    $project_images = $main_image;
+}
+
+foreach($project_images as $key => $image){
+
+    $imagePath = UPLOAD_FOLDER.'original/'. $image['image_name'];
+
+    $multiple_image_html .= '<div class="col-6 col-md-4 p-0">
+                                <a href="'. $imagePath.'">
+                                    <span class="thumb-info thumb-info-no-borders thumb-info-centered-icons">
+                                        <span class="thumb-info-wrapper">
+                                            <img src="'. $imagePath.'" class="img-fluid" alt="" />
+                                            <span class="thumb-info-action">
+                                                <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-plus text-dark"></i></span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>';
+}
 ?>
 
 
@@ -29,10 +62,12 @@ $projects_image = $projects_details['projects_image'];
                 <div class="blog-posts single-post">
                     <article class="post post-large blog-single-post border-0 m-0 p-0">
                         <div class="post-image ml-0">
-                            <a href="blog-post.html">
-                                <img src="<?php echo UPLOAD_FOLDER; ?>original/<?= $projects_image ?>" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                            </a>
-                        </div>
+                            <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+                                <div class="row mx-0">
+                                    <?= $multiple_image_html ?>
+                                </div>
+                            </div>
+						</div>
 
                         <div class="post-date ml-0">
                             <span class="day">10</span>

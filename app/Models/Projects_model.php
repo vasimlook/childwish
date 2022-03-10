@@ -42,6 +42,21 @@ class Projects_model extends Model {
         $result = $this->db->query("UPDATE donation_projects SET received_amount = received_amount + {$receivedAmount} WHERE projects_id  = {$projects_id} ");                                               
         return $result;
     }
+
+    public function get_projects_images($projectsId){
+        $images = array();
+        $projectsId = (int)$projectsId;
+
+        if($projectsId === 0)
+            return $images;
+         
+        $projects = $this->db->query("SELECT *
+                                        FROM   donation_projects_images
+                                    WHERE projects_id = {$projectsId} ");
+        $projects_images = $projects->getResultArray();      
+
+        return $projects_images;  
+    }
    
    
    
