@@ -65,7 +65,12 @@
                             foreach($projects as $key => $project){            
                                 $projectId = $project['projects_id'];
                                 $projectsTitle = $project['projects_title'];
-                                $projectsDescription = substr($project['projects_description'],0,50);
+
+                                $projectsDescription = substr($project['projects_description'],0,45);
+
+                                if(strlen($project['projects_description']) > 45){
+                                    $projectsDescription .= '...';
+                                }
                                 $projectsImage = $project['projects_image'];
                                 $targetAmount = number_format($project['target_amount'],2,'.','');
                                 $receivedAmount = number_format($project['received_amount'],2,'.','');
